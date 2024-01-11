@@ -14,3 +14,7 @@ async def buttons(request:Request):
 @router.get("", response_class=HTMLResponse) # 펑션 호출 방식
 async def buttons(request:Request):
     return templates.TemplateResponse(name=".html", context={'request':request})
+
+@router.get("", response_class=HTMLResponse) # 펑션 호출 방식
+async def buttons(request:Request):
+    return templates.TemplateResponse(name=".html", context={'request':request})
