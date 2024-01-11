@@ -37,3 +37,19 @@ async def mypage(request:Request):
 @router.post("user_mypage", response_class=HTMLResponse) 
 async def mypage(request:Request):
     return templates.TemplateResponse(name="user_mypage.html", context={'request':request})
+
+@router.get("user_infosearch", response_class=HTMLResponse) 
+async def mypage(request:Request):
+    return templates.TemplateResponse(name="user_infosearch.html", context={'request':request})
+
+@router.post("user_infosearch", response_class=HTMLResponse) 
+async def mypage(request:Request):
+    return templates.TemplateResponse(name="user_infosearch.html", context={'request':request})
+
+@router.get("user_privacypolicy", response_class=HTMLResponse) 
+async def mypage(request:Request):
+    return templates.TemplateResponse(name="user_privacypolicy.html", context={'request':request})
+
+@router.post("user_privacypolicy", response_class=HTMLResponse) 
+async def mypage(request:Request):
+    return templates.TemplateResponse(name="user_privacypolicy.html", context={'request':request})
