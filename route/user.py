@@ -3,7 +3,14 @@ from starlette.responses import HTMLResponse
 from fastapi.templating import Jinja2Templates
 from fastapi import Request
 
+
 router = APIRouter()
+
+from database.connection import Database
+from models.member import members
+collection_member = Database(members)
+
+
 
 templates = Jinja2Templates(directory="templates/")
 

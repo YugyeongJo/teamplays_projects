@@ -5,6 +5,21 @@ from fastapi import Request
 
 router = APIRouter()
 
+from database.connection import Database
+from models.disease import diseases
+collection_disease = Database(diseases)
+
+from models.institution import Institutions
+collection_institution = Database(Institutions)
+
+from models.trend import trends
+collection_trend = Database(trends)
+
+from models.academicinfo import academicinfo
+collection_academicinfo = Database(academicinfo)
+
+
+
 templates = Jinja2Templates(directory="templates/")
 
 @router.get("search_institution", response_class=HTMLResponse) 

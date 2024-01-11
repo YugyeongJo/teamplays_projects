@@ -2,11 +2,11 @@ from typing import Any, List, Optional
 
 from beanie import init_beanie, PydanticObjectId
 
-from models.academicinfo import User
-from models.disease import User
-from models.institution import User
-from models.member import User
-from models.trend import User
+from models.academicinfo import academicinfo
+from models.disease import diseases
+from models.institution import Institutions
+from models.member import members
+from models.trend import trends
 
 from motor.motor_asyncio import AsyncIOMotorClient
 
@@ -18,7 +18,7 @@ class Settings(BaseSettings):
     async def initialize_database(self):
         client = AsyncIOMotorClient(self.DATABASE_URL)
         await init_beanie(database=client.get_default_database(),
-                          document_models=[User])
+                          document_models=[academicinfo, diseases, Institutions, members, trends])
 
     class Config:
         env_file = ".env"
@@ -59,7 +59,7 @@ if __name__ == '__main__':
     async def init_db():
         await settings.initialize_database()
 
-    collection_user = Database(User)
+    collection_user = Database(members)
     conditions = "{ name: { $regex: '이' } }"
     list = collection_user.getsbyconditions(conditions)
     pass

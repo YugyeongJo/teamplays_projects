@@ -3,13 +3,16 @@ from typing import Optional, List
 from beanie import Document, Link
 from pydantic import BaseModel, EmailStr
 
-class User(Document):
-    name: Optional[str] = None
-    email: Optional[EmailStr] = None
-    pswd: Optional[str] = None
-    manager: Optional[str] = None
-    sellist1 : Optional[str] = None
-    text : Optional[str] = None
+class members(Document):
+    user_ID: Optional[str] = None
+    user_pswd: Optional[str] = None
+    user_email: Optional[EmailStr] = None    
+    user_name: Optional[str] = None
+    user_info : Optional[str] = None
+    user_birth : Optional[int] = None
+    user_address : Optional[str] = None
+    user_phone : Optional[int] = None
+    
   
     class Settings:
-        name = "users"
+        name = "members"

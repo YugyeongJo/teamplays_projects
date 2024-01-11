@@ -3,13 +3,15 @@ from typing import Optional, List
 from beanie import Document, Link
 from pydantic import BaseModel, EmailStr
 
-class User(Document):
-    name: Optional[str] = None
-    email: Optional[EmailStr] = None
-    pswd: Optional[str] = None
-    manager: Optional[str] = None
-    sellist1 : Optional[str] = None
-    text : Optional[str] = None
+class diseases(Document):
+    dise_url : Optional[str] = None
+    # dise_name: Optional[str] = None
+    # dise_symp: Optional[EmailStr] = None
+    # dise_affected: Optional[str] = None
+    # dise_causes: Optional[str] = None
+    # dise_diagn : Optional[str] = None
+    # dise_cure : Optional[str] = None
+    # dise_code : Optional[int] = None
   
     class Settings:
-        name = "users"
+        name = "diseases"
