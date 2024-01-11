@@ -7,6 +7,10 @@ router = APIRouter()
 
 templates = Jinja2Templates(directory="templates/")
 
-@router.get("", response_class=HTMLResponse) # 펑션 호출 방식
-async def buttons(request:Request):
-    return templates.TemplateResponse(name=".html", context={'request':request})
+@router.get("other_FAQ", response_class=HTMLResponse) 
+async def FAQ(request:Request):
+    return templates.TemplateResponse(name="other_FAQ.html", context={'request':request})
+
+@router.post("other_FAQ", response_class=HTMLResponse) 
+async def FAQ(request:Request):
+    return templates.TemplateResponse(name="other_FAQ.html", context={'request':request})

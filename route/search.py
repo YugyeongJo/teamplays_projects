@@ -7,14 +7,26 @@ router = APIRouter()
 
 templates = Jinja2Templates(directory="templates/")
 
-@router.get("", response_class=HTMLResponse) # 펑션 호출 방식
-async def buttons(request:Request):
-    return templates.TemplateResponse(name=".html", context={'request':request})
+@router.get("search_institution", response_class=HTMLResponse) 
+async def institution(request:Request):
+    return templates.TemplateResponse(name="search_institution.html", context={'request':request})
 
-@router.get("", response_class=HTMLResponse) # 펑션 호출 방식
-async def buttons(request:Request):
-    return templates.TemplateResponse(name=".html", context={'request':request})
+@router.post("search_institution", response_class=HTMLResponse) 
+async def institution(request:Request):
+    return templates.TemplateResponse(name="search_institution.html", context={'request':request})
 
-@router.get("", response_class=HTMLResponse) # 펑션 호출 방식
-async def buttons(request:Request):
-    return templates.TemplateResponse(name=".html", context={'request':request})
+@router.get("search_raredisease", response_class=HTMLResponse) 
+async def raredisease(request:Request):
+    return templates.TemplateResponse(name="search_raredisease.html", context={'request':request})
+
+@router.post("search_raredisease", response_class=HTMLResponse) 
+async def raredisease(request:Request):
+    return templates.TemplateResponse(name="search_raredisease.html", context={'request':request})
+
+@router.get("search_symptom", response_class=HTMLResponse) 
+async def symptom(request:Request):
+    return templates.TemplateResponse(name="search_symptom.html", context={'request':request})
+
+@router.post("search_symptom", response_class=HTMLResponse) 
+async def symptom(request:Request):
+    return templates.TemplateResponse(name="search_symptom.html", context={'request':request})

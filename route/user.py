@@ -7,6 +7,26 @@ router = APIRouter()
 
 templates = Jinja2Templates(directory="templates/")
 
-@router.get("", response_class=HTMLResponse) # 펑션 호출 방식
-async def buttons(request:Request):
-    return templates.TemplateResponse(name=".html", context={'request':request})
+@router.get("user/user_join", response_class=HTMLResponse)
+async def user_join(request:Request):
+    return templates.TemplateResponse(name="user/user_join.html", context={'request':request})
+
+@router.post("user/user_join", response_class=HTMLResponse)
+async def user_join(request:Request):
+    return templates.TemplateResponse(name="user/user_join.html", context={'request':request})
+
+@router.get("user/user_login", response_class=HTMLResponse) 
+async def user_login(request:Request):
+    return templates.TemplateResponse(name="ser/user_login.html", context={'request':request})
+
+@router.post("user/user_login", response_class=HTMLResponse) 
+async def user_login(request:Request):
+    return templates.TemplateResponse(name="ser/user_login.html", context={'request':request})
+
+@router.get("user_mypage", response_class=HTMLResponse) 
+async def mypage(request:Request):
+    return templates.TemplateResponse(name="user_mypage.html", context={'request':request})
+
+@router.post("user_mypage", response_class=HTMLResponse) 
+async def mypage(request:Request):
+    return templates.TemplateResponse(name="user_mypage.html", context={'request':request})
