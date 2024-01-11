@@ -2,6 +2,74 @@
 
 {% block main_container %}
 
+<div class="input-form-backgroud row">
+    <div class="input-form col-md-12 mx-auto">
+        <h4 class="mb-3">회원가입</h4>
+        <form class="validation-form" novalidate>
+            <div class="mb-3">
+                <label for="name">이름</label>
+                <input type="text" class="form-control" id="name" placeholder="이름을 입력해주세요." value="" required>
+            </div>
+            <div class="mb-3">
+                <label for="ID">ID</label>
+                <input type="text" class="form-control" id="id" placeholder="ID를 입력해주세요" value="" required>
+                <button>중복확인</button>      
+                <div>영소문자, 숫자 혼용하여 4~12글자 입력</div>      
+            </div>
+            <div class="mb-3">
+                <label for="password">Password</label>
+                <input type="text" class="form-control" id="password" placeholder="비밀번호를 입력해주세요" value="" required> 
+                <div>영소문자, 숫자 혼용하여 4~12글자 입력</div>    
+            </div>
+            <div class="mb-3">
+                <label for="password_check">Password 확인</label>
+                <input type="text" class="form-control" id="password_check" placeholder="비밀번호를 입력해주세요" value="" required> 
+                <div>비밀번호 틀릴 경우 재입력</div>
+            </div>
+            <div class="mb-3">
+                <label for="email">이메일</label>
+                <input type="email" class="form-control" id="email" placeholder="you@example.com" required>
+                <button>중복확인</button>
+            </div>
+            <div class="mb-3">
+                <label for="address">주소</label>
+                <input type="text" class="form-control" id="address" placeholder="서울특별시 강남구" required>
+            </div>
 
+            <div class="mb-3">
+                <label for="address2">상세주소<span class="text-muted">&nbsp;(필수 아님)</span></label>
+                <input type="text" class="form-control" id="address2" placeholder="상세주소를 입력해주세요.">
+            </div>
+
+            <div class="row">
+                <div class="col-md-8 mb-3">
+                    <label for="root">가입 경로</label>
+                    <select class="custom-select d-block w-100" id="root">
+                        <option value=""></option>
+                        <option>검색</option>
+                        <option>카페</option>
+                    </select>
+                    <div class="invalid-feedback">
+                        가입 경로를 선택해주세요.
+                    </div>
+                </div>
+                <div class="col-md-4 mb-3">
+                    <label for="code">추천인 코드</label>
+                    <input type="text" class="form-control" id="code" placeholder="" required>
+                    <div class="invalid-feedback">
+                        추천인 코드를 입력해주세요.
+                    </div>
+                </div>
+            </div>
+            <hr class="mb-4">
+            <div class="custom-control custom-checkbox">
+                <input type="checkbox" class="custom-control-input" id="aggrement" required>
+                <label class="custom-control-label" for="aggrement">개인정보 수집 및 이용에 동의합니다.</label>
+            </div>
+            <div class="mb-4"></div>
+            <button class="btn btn-primary btn-lg btn-block" type="submit">가입 완료</button>
+        </form>
+    </div>
+</div>
 
 {% endblock %}
