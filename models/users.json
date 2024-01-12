@@ -1,0 +1,7 @@
+[
+    {"name": "김철수", "ID": "cheolsu123", "pswd": "CheolSu!@#", "email": "cheolsu123@example.com", "address": "서울시 강남구 테헤란로 123", "birth": "1985-06-30"},
+    {"name": "이영희", "ID": "younghee456", "pswd": "YoungHee!@#", "email": "younghee456@example.com", "address": "부산시 해운대구 센텀2로 456", "birth": "1990-12-15"},
+    {"name": "박서", "ID": "junseo789", "pswd": "Juno!@#", "email": "junseo789@example.com", "address": "대구시 중구 동성로 789", "birth": "2000-04-20"},
+    {"name": "최하린", "ID": "harin1011", "pswd": "HaRin!@#", "email": "harin1011@example.com", "address": "광주시 서구 상무대로 1011", "birth": "1995-11-05"},
+    {"name": "정민준", "ID": "minjun1213", "pswd": "MinJun!@#", "email": "minjun1213@example.com", "address": "인천시 연수구 청량리로 1213", "birth": "1980-01-02"}
+]
