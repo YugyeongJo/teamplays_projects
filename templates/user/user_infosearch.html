@@ -3,122 +3,32 @@
 {% block main_container %}
 
 <div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card-regi">
-                <div class="card-body search-body">
-                    <div class="search-header mb-4">
-                        <a href="https://ato-nc.com/login">
-                            <img src="https://ato-nc.com/assets/img/back-icon.png" href="https://ato-nc.com/login">
-                        </a>
-                        <p class="m-0">아이디 / 비밀번호 찾기</p>
-                    </div>
-                    <div class="search-btn">
-                        <button class="btn btn-orange tablinks-list btn-trade-history active"
-                            onclick="openTabList(event, 'search-id')" id="default-open-list">
-                            아이디찾기
-                        </button>
-                        <button class="btn btn-orange tablinks-list btn-trade-history"
-                            onclick="openTabList(event, 'search-password')">
-                            비밀번호찾기
-                        </button>
-                    </div>
-                </div>
-
-                <div id="search-id" class="tabcontent-list" style="display: grid;">
-                    <form method="POST" action="https://ato-nc.com/idsearch" class="search-form">
-                        <input type="hidden" name="_token" value="b8XunwunZMvg5AfMrqEnx1PUvmRP9aNYzX3HKKrH">
-                        <div class="regi-input input-group mb-3">
-                            <p class="m-0 regi-title">이름</p>
-                            <input class="regi-input-area" type="text" placeholder="이름" name="username" id="idusername"
-                                value="" required="" autofocus="">
-                        </div>
-                        <div class="regi-input regi-phone-check input-group mb-3" id="authPhoneBox">
-                            <p class="m-0 regi-title">전화번호 확인</p>
-                            <input class="phoneNum regi-input-area" id="phoneNum" name="phoneNum" style="width: 100%;"
-                                type="text" value="" placeholder="핸드폰번호" required="">
-                            <button class="btn-authphone btn btn-orange phone-check-btn" data-style="expand-left"
-                                type="submit">인증번호받기</button>
-                            <label id="phoneNumEmpty" style="color: #ff4d4d; font-size: 10px; display: none;">핸드폰 번호를
-                                입력해주세요.</label>
-                        </div>
-
-                        <div class="regi-input input-group mb-3">
-                            <p></p>
-
-                            <input class="register-input regi-input-area" id="phoneIdAuthNum" type="text"
-                                placeholder="인증번호입력" required="" autofocus="">
-                        </div>
-
-                        <div class="authidSuccess" style="color: #ffffff; display: none;">
-                            <button type="button" class="close" data-dismiss="alert">×</button>
-                        </div>
-                        <div class="regi-input auth-check-message" style="width: 100%">
-                            <div class="col-5 text-center">
-                                <label class="authNum-success-comment" id="IdauthNum-faild"
-                                    style="color: #ff4d4d; display: none">인증번호를 다시 확인해주세요.</label>
-                                <label class="authNum-success-comment" id="IdauthNum-success"
-                                    style="color: #0ece6e; display: none">인증되었습니다.</label>
-                            </div>
-                            <div class="col-4 text-right">
-                                <label class="count-comment" style="color: #ff4d4d;"></label>
-                            </div>
-                        </div>
-                        <div class="search-check-btn-wrap mt-3">
-                            <button class="btn btn-orange search-check-btn" id="nextSearchId" type="submit">확인</button>
-                        </div>
-                    </form>
-                </div>
-
-                <div id="search-password" class="tabcontent-list" style="display: none;">
-                    <form method="POST" action="https://ato-nc.com/pwsearch" class="search-password-form">
-                        <input type="hidden" name="_token" value="b8XunwunZMvg5AfMrqEnx1PUvmRP9aNYzX3HKKrH">
-                        <div class="regi-input input-group mb-3">
-                            <p class="m-0 regi-title">이름</p>
-                            <input class="regi-input-area" type="text" placeholder="이름" name="username" id="username"
-                                value="" required="" autofocus="">
-                        </div>
-                        <div class="regi-input regi-input input-group mb-3">
-                            <p class="m-0 regi-title">아이디</p>
-                            <input class="regi-input-area" type="text" placeholder="아이디" name="name" id="name" value=""
-                                required="">
-                        </div>
-                        <div class="regi-input regi-phone-check input-group mb-3" id="authPhoneBox">
-                            <p class="m-0 regi-title">전화번호 확인</p>
-                            <input class="phoneNum1 regi-input-area" id="phoneNum1" name="phoneNum1"
-                                style="width: 100%;" type="text" value="" placeholder="핸드폰번호" required="">
-                            <button class="btn-password btn btn-orange phone-check-btn" data-style="expand-left"
-                                type="submit">인증번호받기</button>
-                            <label id="phoneNumEmpty1" style="color: #ff4d4d; font-size: 10px; display: none;">핸드폰 번호를
-                                입력해주세요.</label>
-                        </div>
-
-                        <div class="authpwSuccess" style="color: #ffffff; display: none;">
-                            <button type="button" class="close" data-dismiss="alert">×</button>
-                        </div>
-                        <div class="regi-input input-group mb-3">
-                            <p></p>
-
-                            <input class="register-input regi-input-area" id="phoneAuthPwNum" type="text"
-                                placeholder="인증번호입력" required="">
-                        </div>
-                        <div class="regi-input auth-check-message" style="width: 100%">
-                            <div class="col-5 text-center">
-                                <label class="authNum-success-comment" id="authPwNum-faild"
-                                    style="color: #ff4d4d; display: none">인증번호를 다시 확인해주세요.</label>
-                                <label class="authNum-success-comment" id="authPwNum-success"
-                                    style="color: #0ece6e; display: none">인증되었습니다.</label>
-                            </div>
-                            <div class="col-4 text-right">
-                                <label class="count-comment" style="color: #ff4d4d;"></label>
-                            </div>
-                        </div>
-                        <div class="search-check-btn-wrap mt-3">
-                            <button class="btn btn-orange search-check-btn" id="nextBtnSearchPw"
-                                type="submit">확인</button>
-                        </div>
-                    </form>
-                </div>
+    <p class="m-0">아이디 / 비밀번호 찾기</p>
+    <div id="search-id" class="tabcontent-list" style="display: grid;">
+        <form method="POST" action="" class="search-form">
+            <div class="regi-input input-group mb-3">
+                <p class="m-0 regi-title">이름</p>
+                <input class="regi-input-area" type="text" placeholder="이름" name="username" id="idusername" value=""
+                    required="" autofocus="">
             </div>
-
-            {% endblock %}
+            <div class="regi-input regi-phone-check input-group mb-3" id="authPhoneBox">
+                <p class="m-0 regi-title">전화번호 확인</p>
+                <input class="phoneNum regi-input-area" id="phoneNum" name="phoneNum" style="width: 100%;" type="text"
+                    value="" placeholder="핸드폰번호" required="">
+                <button class="btn-authphone btn btn-orange phone-check-btn" data-style="expand-left"
+                    type="submit">인증번호받기</button>
+                <label id="phoneNumEmpty" style="color: #ff4d4d; font-size: 10px; display: none;">핸드폰 번호를
+                    입력해주세요.</label>
+            </div>
+            <div class="regi-input input-group mb-3">
+                <p class="m-0 regi-title">인증번호 입력</p>
+                <input class="register-input regi-input-area" id="phoneIdAuthNum" type="text" placeholder="인증번호입력"
+                    required="" autofocus="">
+            </div>
+            <div class="search-check-btn-wrap mt-3">
+                <button class="btn btn-orange search-check-btn" id="nextSearchId" type="submit">확인</button>
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock %}
