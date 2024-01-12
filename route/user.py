@@ -8,6 +8,7 @@ router = APIRouter()
 
 
 from database.connection import Database
+
 from models.member import members
 collection_member = Database(members)
 
@@ -16,13 +17,22 @@ templates = Jinja2Templates(directory="templates/")
 
 @router.get("/user_join", response_class=HTMLResponse)
 async def user_join(request:Request):
-    member_list = collection_member.get_all()
-    return templates.TemplateResponse(name="user/user_join.html", context={'request':request, 'members' : member_list})
+    email_list = await collection_member.get('user_email')
+    ID_list = await collection_member.get('user_ID')
+    return templates.TemplateResponse(name="user/user_join.html", context={'request':request, 'emails' : email_list, 'IDs':ID_list})
 
 @router.post("/user_join", response_class=HTMLResponse)
 async def user_join(request:Request):
-    member_list = collection_member.get_all()
-    return templates.TemplateResponse(name="user/user_join.html", context={'request':request, 'members' : member_list})
+    email_list = await collection_member.get('user_email')
+    ID_list = await collection_member.get('user_ID')
+
+    form_data = await request.form()
+    dict_form_data = dict(form_data)
+
+    member = members(**dict_form_data)
+    await collection_member.save(member)
+
+    return templates.TemplateResponse(name="user/user_join.html", context={'request':request, 'emails' : email_list, 'IDs':ID_list})
 
 @router.get("/user_login", response_class=HTMLResponse) 
 async def user_login(request:Request):
