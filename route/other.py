@@ -7,10 +7,10 @@ router = APIRouter()
 
 templates = Jinja2Templates(directory="templates/")
 
-@router.get("other_FAQ", response_class=HTMLResponse) 
+@router.get("/other_FAQ", response_class=HTMLResponse) 
 async def FAQ(request:Request):
-    return templates.TemplateResponse(name="other_FAQ.html", context={'request':request})
+    return templates.TemplateResponse(name="other/other_FAQ.html", context={'request':request})
 
-@router.post("other_FAQ", response_class=HTMLResponse) 
+@router.post("/other_FAQ", response_class=HTMLResponse) 
 async def FAQ(request:Request):
-    return templates.TemplateResponse(name="other_FAQ.html", context={'request':request})
+    return templates.TemplateResponse(name="other/other_FAQ.html", context={'request':request})
