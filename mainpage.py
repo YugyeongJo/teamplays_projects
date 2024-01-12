@@ -36,3 +36,8 @@ app.add_middleware(
 @app.get("/")
 async def root(Request:Request):
     return templates.TemplateResponse("mainpage.html",{'request':Request})
+
+
+@app.post("/")
+async def root(Request:Request):
+    return templates.TemplateResponse("mainpage.html",{'request':Request})
