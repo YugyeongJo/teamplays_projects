@@ -10,7 +10,9 @@ class members(Document):
     user_name: Optional[str] = None
     user_info : Optional[str] = None
     user_birth : Optional[str] = None
+    user_postcode : Optional[str] = None
     user_address : Optional[str] = None
+    user_detailed_address : Optional[str] = None
     
   
     class Settings:
