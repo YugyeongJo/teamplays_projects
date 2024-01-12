@@ -17,14 +17,14 @@ templates = Jinja2Templates(directory="templates/")
 
 @router.get("/user_join", response_class=HTMLResponse)
 async def user_join(request:Request):
-    email_list = await collection_member.get('user_email')
-    ID_list = await collection_member.get('user_ID')
-    return templates.TemplateResponse(name="user/user_join.html", context={'request':request, 'emails' : email_list, 'IDs':ID_list})
+    # email_list = await collection_member.get('user_email')
+    # ID_list = await collection_member.get('user_ID')
+    return templates.TemplateResponse(name="user/user_join.html", context={'request':request})
 
 @router.post("/user_join", response_class=HTMLResponse)
 async def user_join(request:Request):
-    email_list = await collection_member.get('user_email')
-    ID_list = await collection_member.get('user_ID')
+    # email_list = await collection_member.get('user_email')
+    # ID_list = await collection_member.get('user_ID')
 
     form_data = await request.form()
     dict_form_data = dict(form_data)
@@ -32,7 +32,7 @@ async def user_join(request:Request):
     member = members(**dict_form_data)
     await collection_member.save(member)
 
-    return templates.TemplateResponse(name="user/user_join.html", context={'request':request, 'emails' : email_list, 'IDs':ID_list})
+    return templates.TemplateResponse(name="user/user_join.html", context={'request':request})
 
 @router.get("/user_login", response_class=HTMLResponse) 
 async def user_login(request:Request):
@@ -45,24 +45,24 @@ async def user_login(request:Request):
 
 @router.get("/user_mypage", response_class=HTMLResponse) 
 async def mypage(request:Request):
-    return templates.TemplateResponse(name="user_mypage.html", context={'request':request})
+    return templates.TemplateResponse(name="user/user_mypage.html", context={'request':request})
 
 @router.post("/user_mypage", response_class=HTMLResponse) 
 async def mypage(request:Request):
-    return templates.TemplateResponse(name="user_mypage.html", context={'request':request})
+    return templates.TemplateResponse(name="user/user_mypage.html", context={'request':request})
 
 @router.get("/user_infosearch", response_class=HTMLResponse) 
 async def mypage(request:Request):
-    return templates.TemplateResponse(name="user_infosearch.html", context={'request':request})
+    return templates.TemplateResponse(name="user/user_infosearch.html", context={'request':request})
 
 @router.post("/user_infosearch", response_class=HTMLResponse) 
 async def mypage(request:Request):
-    return templates.TemplateResponse(name="user_infosearch.html", context={'request':request})
+    return templates.TemplateResponse(name="user/user_infosearch.html", context={'request':request})
 
 @router.get("/user_privacypolicy", response_class=HTMLResponse) 
 async def mypage(request:Request):
-    return templates.TemplateResponse(name="user_privacypolicy.html", context={'request':request})
+    return templates.TemplateResponse(name="user/user_privacypolicy.html", context={'request':request})
 
 @router.post("/user_privacypolicy", response_class=HTMLResponse) 
 async def mypage(request:Request):
-    return templates.TemplateResponse(name="user_privacypolicy.html", context={'request':request})
+    return templates.TemplateResponse(name="user/user_privacypolicy.html", context={'request':request})
