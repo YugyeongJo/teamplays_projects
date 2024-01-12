@@ -24,11 +24,11 @@ async def user_join(request:Request):
 
 @router.get("user/user_login", response_class=HTMLResponse) 
 async def user_login(request:Request):
-    return templates.TemplateResponse(name="ser/user_login.html", context={'request':request})
+    return templates.TemplateResponse(name="user/user_login.html", context={'request':request})
 
 @router.post("user/user_login", response_class=HTMLResponse) 
 async def user_login(request:Request):
-    return templates.TemplateResponse(name="ser/user_login.html", context={'request':request})
+    return templates.TemplateResponse(name="user/user_login.html", context={'request':request})
 
 @router.get("user_mypage", response_class=HTMLResponse) 
 async def mypage(request:Request):
