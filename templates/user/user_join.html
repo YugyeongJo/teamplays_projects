@@ -8,17 +8,17 @@
         <form class="validation-form" novalidate>
             <div class="mb-3">
                 <label for="name">이름</label>
-                <input type="text" class="form-control" id="name" placeholder="이름을 입력해주세요." value="" required>
+                <input type="text" class="form-control" name="user_name" id="name" placeholder="이름을 입력해주세요." value="" required>
             </div>
             <div class="mb-3">
                 <label for="ID">ID</label>
-                <input type="text" class="form-control" id="id" placeholder="ID를 입력해주세요" value="" required>
+                <input type="text" class="form-control" name="user_ID" id="id" placeholder="ID를 입력해주세요" value="" required>
                 <button>중복확인</button>      
                 <div>영소문자, 숫자 혼용하여 4~12글자 입력</div>      
             </div>
             <div class="mb-3">
                 <label for="password">Password</label>
-                <input type="text" class="form-control" id="password" placeholder="비밀번호를 입력해주세요" value="" required> 
+                <input type="text" class="form-control" name="user_pswd" id="password" placeholder="비밀번호를 입력해주세요" value="" required> 
                 <div>영소문자, 숫자 혼용하여 4~12글자 입력</div>    
             </div>
             <div class="mb-3">
@@ -28,13 +28,13 @@
             </div>
             <div class="mb-3">
                 <label for="email">이메일</label>
-                <input type="email" class="form-control" id="email" placeholder="you@example.com" required>
+                <input type="email" class="form-control" name="user_email" id="email" placeholder="you@example.com" required>
                 <button>중복확인</button>
             </div>
             <div class="mb-3">
                 <label for="address">주소</label>
                 <input type="text" class="form-control" id="address" placeholder="우편번호" required>
-                <input type="text" class="form-control" id="address" placeholder="시/구/동 입력" required>
+                <input type="text" class="form-control" id="address" name="user_address" placeholder="시/구/동 입력" required>
             </div>
             <div class="mb-3">
                 <label for="address2">상세주소</label>
@@ -42,7 +42,7 @@
             </div>
             <div class="mb-3">
                 <label for="birth">생년월일</label>
-                <input type="text" class="form-control" id="birth" placeholder="8자리 모두 입력해주세요. ex)20240112">
+                <input type="text" class="form-control" id="birth" name="user_birth" placeholder="8자리 모두 입력해주세요. ex)20240112">
             </div>
             </div>
             <hr class="mb-4">
@@ -51,7 +51,7 @@
                 <label class="custom-control-label" for="aggrement">개인정보 수집 및 이용에 동의합니다.</label>
             </div>
             <div class="mb-4"></div>
-            <button class="btn btn-primary btn-lg btn-block" type="submit">가입 완료</button>
+            <button class="btn btn-primary btn-lg btn-block" type="submit" formaction="/user/user_login" formmethod="post">가입 완료</button>
         </form>
     </div>
 </div>

@@ -41,6 +41,11 @@ async def user_login(request:Request):
 
 @router.post("/user_login", response_class=HTMLResponse) 
 async def user_login(request:Request):
+    form_data = await request.form()
+    dict_form_data = dict(form_data)
+
+    member = members(**dict_form_data)
+    await collection_member.save(member)
     return templates.TemplateResponse(name="user/user_login.html", context={'request':request})
 
 @router.get("/user_mypage", response_class=HTMLResponse) 
