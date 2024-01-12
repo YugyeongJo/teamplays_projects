@@ -7,11 +7,11 @@
         <img class="mb-4" src="" alt="" width="72" height="57">
         <h1 class="h3 mb-3 fw-normal">로그인</h1>
         <div class="form-floating">
-            <input type="id" class="form-control" id="floatingInput" placeholder="name@example.com">
+            <input type="id" class="form-control" name="user_ID" id="floatingInput" placeholder="name@example.com">
             <label for="floatingInput">ID</label>
         </div>
         <div class="form-floating">
-            <input type="password" class="form-control" id="floatingPassword" placeholder="Password">
+            <input type="password" class="form-control" name="user_pswd" id="floatingPassword" placeholder="Password">
             <label for="floatingPassword">Password</label>
         </div>
         <div class="form-check text-start my-3">
@@ -24,7 +24,7 @@
                 <a href="/user/user_infosearch">아이디 찾기/비밀번호 찾기</a>
             </div>
         </div>
-        <button class="btn btn-primary w-100 py-2" type="submit">LOGIN</button>
+        <button class="btn btn-primary w-100 py-2" type="submit" formaction="/" formmethod="post">LOGIN</button>
     </form>
 </div>
 {% endblock %}

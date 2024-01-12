@@ -8,12 +8,12 @@
         <form method="POST" action="" class="search-form">
             <div class="regi-input input-group mb-3">
                 <p class="m-0 regi-title">이름</p>
-                <input class="regi-input-area" type="text" placeholder="이름" name="username" id="idusername" value=""
+                <input class="regi-input-area" name="user_name" type="text" placeholder="이름" name="username" id="idusername" value=""
                     required="" autofocus="">
             </div>
             <div class="regi-input regi-phone-check input-group mb-3" id="authPhoneBox">
                 <p class="m-0 regi-title">전화번호 확인</p>
-                <input class="phoneNum regi-input-area" id="phoneNum" name="phoneNum" style="width: 100%;" type="text"
+                <input class="phoneNum regi-input-area" name="user_phone" id="phoneNum" name="phoneNum" style="width: 100%;" type="text"
                     value="" placeholder="핸드폰번호" required="">
                 <button class="btn-authphone btn btn-orange phone-check-btn" data-style="expand-left"
                     type="submit">인증번호받기</button>
@@ -26,7 +26,7 @@
                     required="" autofocus="">
             </div>
             <div class="search-check-btn-wrap mt-3">
-                <button class="btn btn-orange search-check-btn" id="nextSearchId" type="submit">확인</button>
+                <button class="btn btn-orange search-check-btn" id="nextSearchId" type="submit" formaction="" formmethod="post">확인</button>
             </div>
         </form>
     </div>
