@@ -31,6 +31,9 @@ async def user_join(request:Request):
     form_data = await request.form()
     dict_form_data = dict(form_data)
 
+    check_list = await collection_member.get_all()
+    checks_list = [answer.dict() for answer in check_list]
+    
     member = members(**dict_form_data)
     await collection_member.save(member)
 
@@ -40,16 +43,10 @@ async def user_join(request:Request):
 # 로그인
 @router.get("/user_login", response_class=HTMLResponse) 
 async def user_login(request:Request):
-    request._query_params
     return templates.TemplateResponse(name="user/user_login.html", context={'request':request})
 
 @router.post("/user_login", response_class=HTMLResponse) 
 async def user_login(request:Request):
-    form_data = await request.form()
-    dict_form_data = dict(form_data)
-
-    member = members(**dict_form_data)
-    await collection_member.save(member)
     return templates.TemplateResponse(name="user/user_login.html", context={'request':request})
 
 # 로그인 체킹 페이지
@@ -61,7 +58,23 @@ async def mypage(request:Request):
 async def mypage(request:Request):
     form_data = await request.form()
     dict_form_data = dict(form_data)
-    return templates.TemplateResponse(name="user/user_logincheck.html", context={'request':request})
+    pass
+    inputID = dict_form_data['user_ID']
+    inputPSWD = dict_form_data['user_pswd']
+
+    check_list = await collection_member.get_all()
+    checks_list = [answer.dict() for answer in check_list]
+
+    logcheck = False
+    pass
+    for i in checks_list:
+        if i['user_ID'] == inputID and i['user_pswd'] == inputPSWD:
+            logcheck = True
+            break
+    if logcheck:
+        return templates.TemplateResponse(name="mainpage.html", context={'request':request})
+    else: 
+        return templates.TemplateResponse(name="user/user_logincheck.html", context={'request':request})
 
 
 # 마이 페이지
