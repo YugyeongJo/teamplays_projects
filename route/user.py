@@ -1,4 +1,5 @@
 from fastapi import APIRouter
+from fastapi import HTTPException
 from starlette.responses import HTMLResponse
 from fastapi.templating import Jinja2Templates
 from fastapi import Request
@@ -55,19 +56,27 @@ async def mypage(request:Request ):
     inputID = dict_form_data['user_ID']
     inputemail = dict_form_data['user_email']
     
-    check_list = await collection_member.get("user_ID")
-    checks_list = [check.dict() for check in check_list]
+    check_list = await collection_member.get({"user_ID" : inputID})
+    # checks_list = [check.dict() for check in check_list]
+    
+    if check_list is not None:
+    # 아이디가 이미 존재하면 에러 메시지를 반환합니다.
+        raise HTTPException(status_code=400, detail="아이디가 존재합니다. 다른 아이디를 입력해주세요.")
+    else:
+    # 아이디가 존재하지 않으면 성공 메시지를 반환합니다.
+        return {"message": "사용가능한 아이디입니다."}
 
-    check_ID = False
-    pass
-    for i in checks_list:
-        if i['user_ID'] == inputID :
-            check_ID = True
-            break
-    if check_ID:
-        return templates.TemplateResponse(name="user/user_joincheck_ID_uncheck.html", context={'request':request, 'check_ID':check_ID})
-    else: 
-        return templates.TemplateResponse(name="user/user_joincheck_ID_oncheck.html", context={'request':request})
+
+    # check_ID = False
+    # pass
+    # for i in checks_list:
+    #     if i['user_ID'] == inputID :
+    #         check_ID = True
+    #         break
+    # if check_ID:
+    #     return templates.TemplateResponse(name="user/user_joincheck_ID.html", context={'request':request, 'check_ID':check_ID})
+    # else: 
+    #     return templates.TemplateResponse(name="user/user_joincheck_ID.html", context={'request':request})
 
 
     # for i in checks_list:
