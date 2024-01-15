@@ -89,15 +89,15 @@ async def mypage(request:Request ):
     # else: 
     #     return templates.TemplateResponse(name="user_joincheck_ID.html", context={'request':request})
 
-# 회원가입 페이지 이메일 확인
+# 회원가입 페이지 이메일 확인 페이지
     
-
 @router.get("/user_joincheck_email", response_class=HTMLResponse) 
 async def mypage(request:Request):
     pass
     return templates.TemplateResponse(name="user/user_joincheck_email.html", context={'request':request})
 
-@router.post("/user_joincheck_email", response_class=HTMLResponse) 
+# 이메일 체킹
+@router.post("/user_joincheck_emailcheck", response_class=HTMLResponse) 
 async def mypage(request:Request):
     form_data = await request.form()
     dict_form_data = dict(form_data)
@@ -112,8 +112,11 @@ async def mypage(request:Request):
         if i['user_email'] == inputemail :
             check_email = True
             break
+    if check_email:
+        return templates.TemplateResponse(name="user/user_joincheck_emailcheck_fail.html", context={'request':request})
+    else :
+        return templates.TemplateResponse(name="user/user_joincheck_emailcheck_suc.html", context={'request':request})
 
-    return templates.TemplateResponse(name="user/user_joincheck_email.html", context={'request':request, 'check_email' : check_email})
 
 # 로그인
 @router.get("/user_login", response_class=HTMLResponse) 
