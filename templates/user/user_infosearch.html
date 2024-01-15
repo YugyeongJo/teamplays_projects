@@ -3,30 +3,30 @@
 {% block main_container %}
 
 <div class="container">
-    <p class="m-0">아이디 / 비밀번호 찾기</p>
-    <div id="search-id" class="tabcontent-list" style="display: grid;">
+    <div id="search-id" class="justify-content-center col-10">
+        <p class="mb-5">아이디 / 비밀번호 찾기</p>
         <form method="POST" action="" class="search-form">
-            <div class="regi-input input-group mb-3">
-                <p class="m-0 regi-title">이름</p>
-                <input class="regi-input-area" name="user_name" type="text" placeholder="이름" name="username" id="idusername" value=""
-                    required="" autofocus="">
+            <div class="regi-input input-group mb-3 row">
+                <p class="m-0 regi-title col-3">이름</p>
+                <div class="col-8">
+                    <input class="regi-input-area col-md-3 m-1" type="text" placeholder="이름" id="idusername">
+                </div>
             </div>
-            <div class="regi-input regi-phone-check input-group mb-3" id="authPhoneBox">
-                <p class="m-0 regi-title">전화번호 확인</p>
-                <input class="phoneNum regi-input-area" name="user_phone" id="phoneNum" name="phoneNum" style="width: 100%;" type="text"
-                    value="" placeholder="핸드폰번호" required="">
-                <button class="btn-authphone btn btn-orange phone-check-btn" data-style="expand-left"
-                    type="submit">인증번호받기</button>
-                <label id="phoneNumEmpty" style="color: #ff4d4d; font-size: 10px; display: none;">핸드폰 번호를
-                    입력해주세요.</label>
+            <div class="regi-input regi-phone-check input-group" id="authPhoneBox">
+                <p class="regi-title col-3">전화번호 확인</p>
+                <div class="col-8 row">
+                    <input class="phoneNum col-md-3 m-1" id="phoneNum" type="text" placeholder="핸드폰번호">
+                    <button class="btn btn-primary col-md-2 m-1" type="submit">인증</button>
+                </div>
             </div>
-            <div class="regi-input input-group mb-3">
-                <p class="m-0 regi-title">인증번호 입력</p>
-                <input class="register-input regi-input-area" id="phoneIdAuthNum" type="text" placeholder="인증번호입력"
-                    required="" autofocus="">
+            <div class="mb-3">핸드폰 번호를 입력해주세요.</div>
+            <div class="regi-input input-group mb-3 ">
+                <p class="m-0 regi-title col-3 col-md-3 m-1">인증번호 입력</p>
+                <input class="register-input regi-input-area" id="phoneIdAuthNum" type="text" placeholder="인증번호입력">
             </div>
-            <div class="search-check-btn-wrap mt-3">
-                <button class="btn btn-orange search-check-btn" id="nextSearchId" type="submit" formaction="" formmethod="post">확인</button>
+            <div class="search-check-btn-wrap mt-3 ">
+                <button class="btn btn-primary search-check-btn" id="nextSearchId" type="submit" formaction=""
+                    formmethod="post">확인</button>
             </div>
         </form>
     </div>
