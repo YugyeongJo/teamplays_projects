@@ -4,6 +4,7 @@ from fastapi.templating import Jinja2Templates
 from fastapi import Request
 
 
+
 router = APIRouter()
 
 
@@ -46,7 +47,7 @@ async def mypage(request:Request):
     return templates.TemplateResponse(name="user/user_joincheck_ID.html", context={'request':request})
 
 @router.post("/user_joincheck_ID", response_class=HTMLResponse) 
-async def mypage(request:Request):
+async def mypage(request:Request ):
 
     form_data = await request.form()
     dict_form_data = dict(form_data)
@@ -79,13 +80,31 @@ async def mypage(request:Request):
     # else: 
     #     return templates.TemplateResponse(name="user_joincheck_ID.html", context={'request':request})
 
+# 회원가입 페이지 이메일 확인
+    
+
 @router.get("/user_joincheck_email", response_class=HTMLResponse) 
 async def mypage(request:Request):
+    pass
     return templates.TemplateResponse(name="user/user_joincheck_email.html", context={'request':request})
 
 @router.post("/user_joincheck_email", response_class=HTMLResponse) 
 async def mypage(request:Request):
-    return templates.TemplateResponse(name="user/user_joincheck_email.html", context={'request':request})
+    form_data = await request.form()
+    dict_form_data = dict(form_data)
+    inputemail = dict_form_data['user_email']
+
+    check_list = await collection_member.get_all()
+    checks_list = [check.dict() for check in check_list]
+
+    check_email = False
+    pass
+    for i in checks_list:
+        if i['user_email'] == inputemail :
+            check_email = True
+            break
+
+    return templates.TemplateResponse(name="user/user_joincheck_email.html", context={'request':request, 'check_email' : check_email})
 
 # 로그인
 @router.get("/user_login", response_class=HTMLResponse) 
