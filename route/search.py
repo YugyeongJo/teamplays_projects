@@ -63,11 +63,17 @@ async def list(
     dise_name_en: Optional[str] = None,
     dise_support: Optional[str] = None,
     dise_url: Optional[str] = None,
-    search_word: Optional[str] = None
 ):
     # db.answers.find({'name':{ '$regex': '김' }})
     # { 'name': { '$regex': user_dict.word } }
+    
+    user_dict = dict(request._query_params)
     conditions = {}
+
+    try:
+        search_word = user_dict["search_word"]
+    except:
+        search_word = None    
     if dise_KCD_code:
         conditions.update({"dise_KCD_code": {'$regex': dise_KCD_code}})
     if dise_spc_code:
@@ -93,6 +99,11 @@ async def list(
                 {"dise_url": {'$regex': search_word}}
             ]
         })
+    pass
+
+    if dise_name_kr:
+        conditions.find({ 'dise_name_kr': { '$regex': search_word }})
+    pass
 
     dise_list, pagination = await collection_disease.getsbyconditionswithpagination(
         conditions, page_number

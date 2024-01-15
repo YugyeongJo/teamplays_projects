@@ -41,53 +41,32 @@ async def user_join(request:Request):
 
     return templates.TemplateResponse(name="user/user_join.html", context={'request':request})
 
-# 회원가입 ID, email 중복확인 페이지
+# 회원가입 ID 중복확인 페이지
 
 @router.get("/user_joincheck_ID", response_class=HTMLResponse) 
 async def mypage(request:Request):
     return templates.TemplateResponse(name="user/user_joincheck_ID.html", context={'request':request})
 
-@router.post("/user_joincheck_ID", response_class=HTMLResponse) 
+@router.post("/user_joincheck_IDcheck", response_class=HTMLResponse) 
 async def mypage(request:Request ):
-
     form_data = await request.form()
     dict_form_data = dict(form_data)
-    pass
     inputID = dict_form_data['user_ID']
-    inputemail = dict_form_data['user_email']
-    
-    check_list = await collection_member.get({"user_ID" : inputID})
-    # checks_list = [check.dict() for check in check_list]
-    
-    if check_list is not None:
-    # 아이디가 이미 존재하면 에러 메시지를 반환합니다.
-        raise HTTPException(status_code=400, detail="아이디가 존재합니다. 다른 아이디를 입력해주세요.")
-    else:
-    # 아이디가 존재하지 않으면 성공 메시지를 반환합니다.
-        return {"message": "사용가능한 아이디입니다."}
 
-
-    # check_ID = False
+    check_list = await collection_member.get_all()
+    checks_list = [check.dict() for check in check_list]
+    
+    check_ID = False
     # pass
-    # for i in checks_list:
-    #     if i['user_ID'] == inputID :
-    #         check_ID = True
-    #         break
-    # if check_ID:
-    #     return templates.TemplateResponse(name="user/user_joincheck_ID.html", context={'request':request, 'check_ID':check_ID})
-    # else: 
-    #     return templates.TemplateResponse(name="user/user_joincheck_ID.html", context={'request':request})
+    for i in checks_list:
+        if i['user_ID'] == inputID :
+            check_ID = True
+            break
+    if check_ID:
+        return templates.TemplateResponse(name="user/user_joincheck_IDcheck_fail.html", context={'request':request})
+    else :
+        return templates.TemplateResponse(name="user/user_joincheck_IDcheck_suc.html", context={'request':request})
 
-
-    # for i in checks_list:
-    #     if inputID == i["user_ID"]:
-    #         check_ID = 1
-    #     else : 
-    #         check_ID = 0
-    # if check_ID == 1:
-    #     return templates.TemplateResponse(name="user_joincheck_ID.html", context={'request':request})
-    # else: 
-    #     return templates.TemplateResponse(name="user_joincheck_ID.html", context={'request':request})
 
 # 회원가입 페이지 이메일 확인 페이지
     

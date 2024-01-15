@@ -42,10 +42,11 @@ class Paginations:
         self.first_page = 1
         # 마지막 페이지
         self.last_page = self.total_pages
+        pass
 
     def _calculate_total_pages(self):
         # return (self.total_records + self.records_per_page - 1) // self.records_per_page
-        return ceil(self.total_records / self.records_per_page-1)
+        return ceil(self.total_records / self.records_per_page)
 
     def _calculate_current_block(self):
         return (self.current_page - 1) // self.pages_per_block + 1
@@ -60,7 +61,9 @@ class Paginations:
     
     def _calculate_start_record_number(self):
         # 현재 페이지 번호와 페이지 당 레코드 수를 곱한 후 페이지 당 레코드 수를 빼고 1을 더하여 현재 페이지의 시작 레코드 번호를 계산
-        return (self.current_page * self.records_per_page) - self.records_per_page + 1    
+        return (self.current_page * self.records_per_page) - self.records_per_page + 1
+    
+    pass    
 
 if __name__ == "__main__":
     # 예시 사용:
