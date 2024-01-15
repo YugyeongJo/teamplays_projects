@@ -39,6 +39,53 @@ async def user_join(request:Request):
 
     return templates.TemplateResponse(name="user/user_join.html", context={'request':request})
 
+# 회원가입 ID, email 중복확인 페이지
+
+@router.get("/user_joincheck_ID", response_class=HTMLResponse) 
+async def mypage(request:Request):
+    return templates.TemplateResponse(name="user/user_joincheck_ID.html", context={'request':request})
+
+@router.post("/user_joincheck_ID", response_class=HTMLResponse) 
+async def mypage(request:Request):
+
+    form_data = await request.form()
+    dict_form_data = dict(form_data)
+    pass
+    inputID = dict_form_data['user_ID']
+    inputemail = dict_form_data['user_email']
+    
+    check_list = await collection_member.get("user_ID")
+    checks_list = [check.dict() for check in check_list]
+
+    check_ID = False
+    pass
+    for i in checks_list:
+        if i['user_ID'] == inputID :
+            check_ID = True
+            break
+    if check_ID:
+        return templates.TemplateResponse(name="user/user_joincheck_ID_uncheck.html", context={'request':request, 'check_ID':check_ID})
+    else: 
+        return templates.TemplateResponse(name="user/user_joincheck_ID_oncheck.html", context={'request':request})
+
+
+    # for i in checks_list:
+    #     if inputID == i["user_ID"]:
+    #         check_ID = 1
+    #     else : 
+    #         check_ID = 0
+    # if check_ID == 1:
+    #     return templates.TemplateResponse(name="user_joincheck_ID.html", context={'request':request})
+    # else: 
+    #     return templates.TemplateResponse(name="user_joincheck_ID.html", context={'request':request})
+
+@router.get("/user_joincheck_email", response_class=HTMLResponse) 
+async def mypage(request:Request):
+    return templates.TemplateResponse(name="user/user_joincheck_email.html", context={'request':request})
+
+@router.post("/user_joincheck_email", response_class=HTMLResponse) 
+async def mypage(request:Request):
+    return templates.TemplateResponse(name="user/user_joincheck_email.html", context={'request':request})
 
 # 로그인
 @router.get("/user_login", response_class=HTMLResponse) 
