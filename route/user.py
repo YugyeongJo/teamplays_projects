@@ -159,24 +159,23 @@ async def mypage(request:Request):
     dict_form_data = dict(form_data)
     inputemail = dict_form_data['user_email']
 
-    # check_list = await collection_member.get_all()
-    # checks_list = [check.dict() for check in check_list]
-    
+    check_list = await collection_member.get_all()
+    checks_list = [check.dict() for check in check_list]
 
-    cursor = await collection_member.find({})
-    check_list = await collection_member.to_list(cursor)
 
-    member_info = None
-    for member in check_list:
+    member_info = {}
+    check_member=False
+    for member in checks_list:
         if member['user_email'] == inputemail:
             member_info = {
-                "user_id": member['user_ID'],  
-                "password": member['user_pswd']  
+                "user_ID": member['user_ID'],  
+                "user_pswd": member['user_pswd']  
             }
+            check_member = True
             break
 
-    if member_info:
-        return templates.TemplateResponse("user/user_searchemail.html", context={'request': request, "member": member_info})
+    if check_member:
+        return templates.TemplateResponse("user/user_searchemail_found.html", context={'request': request, "member": member_info})
     else:
         return templates.TemplateResponse("user/user_searchemail_notfound.html", context={'request': request})
 
