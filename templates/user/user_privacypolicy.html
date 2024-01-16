@@ -122,7 +122,8 @@
                 가능합니다.
             </span>
             <div>
-                <button type="button" id="btn_submit" onclick="location.href='/user/user_join'" disabled>동의하고 가입하기</button>
+                <button type="button" id="btn_submit" onclick="location.href='/user/user_join'" disabled>동의하고
+                    가입하기</button>
             </div>
 
 
@@ -131,25 +132,43 @@
                 function checkAll() {
                     var checkallCheckbox = document.getElementById("chk_checkall");
                     var otherCheckboxes = document.querySelectorAll(".other-checkboxes input[type='checkbox']");
-
+                    var counter = 0
                     for (var i = 0; i < otherCheckboxes.length; i++) {
+                        
                         otherCheckboxes[i].checked = checkallCheckbox.checked;
+
+                    }
+                    counter++
+                    if (counter % 2 == 0) {
+                        allChecked = false;
+                    }
+                    else {
+                        allChecked = true;
+                    }
+
+                    if (allChecked) {
+                        submitButton.disabled = false;
+                    }
+                    else {
+                        submitButton.disabled = true;
                     }
                 }
+
                 // 필수약관 미동의시 가입불가
                 function checkAgreement() {
                     var requiredAgreements = document.querySelectorAll(".required-agreement");
                     var agreeAllCheckbox = document.getElementById("chk_checkall");
                     var submitButton = document.getElementById("btn_submit");
 
-                    var allChecked = true;
                     for (var i = 0; i < requiredAgreements.length; i++) {
                         if (!requiredAgreements[i].checked) {
                             allChecked = false;
-                            break;
+                        }
+                        else {
+                            var allChecked = true;
                         }
                     }
-                    if (allChecked || agreeAllCheckbox.checked) {
+                    if (allChecked) {
                         submitButton.disabled = false;
                     }
                     else {
