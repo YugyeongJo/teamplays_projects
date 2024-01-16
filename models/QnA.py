@@ -1,7 +1,7 @@
 from typing import Optional, List
 
 from beanie import Document, Link
-from pydantic import BaseModel, EmailStr
+from pydantic import BaseModel, EmailStr, Field
 from datetime import datetime
 
 class QnA(Document):
@@ -10,7 +10,7 @@ class QnA(Document):
     ques_content: Optional[str] = None
     ques_time: Optional[datetime] = None
     ques_answer: Optional[str] = None
-    
+    object_id: Optional[str] = Field(None, alias="object_id")
     
   
     class Settings:

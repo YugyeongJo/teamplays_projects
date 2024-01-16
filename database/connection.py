@@ -1,5 +1,5 @@
 from typing import Any, List, Optional
-
+from bson.objectid import ObjectId
 from beanie import init_beanie, PydanticObjectId
 
 from models.academicinfo import academicinfo
@@ -53,7 +53,7 @@ class Database:
         return None   
     
     # 업데이트
-    async def update(self, id: PydanticObjectId, document) -> Any:
+    async def update(self, id, document) -> Any:
         from pymongo import MongoClient
         from dotenv import load_dotenv
         import os
@@ -71,7 +71,7 @@ class Database:
         return False
     
         # 삭제
-    async def delete(self, id: PydanticObjectId) -> Any:
+    async def delete(self, id) -> Any:
         from pymongo import MongoClient
         from dotenv import load_dotenv
         import os
@@ -82,8 +82,9 @@ class Database:
         client = MongoClient(DB_URI)
         db = client['teamplays']
         collection = db['QnA']
-        deleted_doc = await collection.delete_one({"_id": id})
-        if deleted_doc:
+        
+        deleted_doc = await collection.delete_one({"_id": ObjectId(f'{id}')})
+        if deleted_doc.deleted_count > 0:
             return True
         return False
      
@@ -102,7 +103,10 @@ class Database:
         documents = await self.model.find(conditions).skip(pagination.start_record_number-1).limit(pagination.records_per_page).to_list()
         if documents:
             return documents, pagination
-        return False    
+        return False  
+    async def to_list(self, cursor, length=None):
+        # MongoDB 커서의 to_list 메소드를 비동기로 호출합니다.
+        return await cursor.to_list(length) 
 
 if __name__ == '__main__':
     settings = Settings()

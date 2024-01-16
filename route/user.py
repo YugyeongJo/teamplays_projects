@@ -155,14 +155,42 @@ async def mypage(request:Request):
     return templates.TemplateResponse(name="user/user_mypage.html", context={'request':request})
 
 
-# 아이디/비밀번호 찾기
+# 이메일로 아이디/비밀번호 찾기
 @router.get("/user_infosearch", response_class=HTMLResponse) 
 async def mypage(request:Request):
     return templates.TemplateResponse(name="user/user_infosearch.html", context={'request':request})
 
-@router.post("/user_infosearch", response_class=HTMLResponse) 
+@router.get("/user_searchcheck_email", response_class=HTMLResponse) 
 async def mypage(request:Request):
-    return templates.TemplateResponse(name="user/user_infosearch.html", context={'request':request})
+    return templates.TemplateResponse(name="user/user_searchcheck_email.html", context={'request':request})
+
+@router.post("/user_searchcheck_emailcheck", response_class=HTMLResponse) 
+async def mypage(request:Request):
+    form_data = await request.form()
+    dict_form_data = dict(form_data)
+    inputemail = dict_form_data['user_email']
+
+    check_list = await collection_member.get_all()
+    checks_list = [check.dict() for check in check_list]
+
+
+    member_info = {}
+    check_member=False
+    for member in checks_list:
+        if member['user_email'] == inputemail:
+            member_info = {
+                "user_ID": member['user_ID'],  
+                "user_pswd": member['user_pswd']  
+            }
+            check_member = True
+            break
+
+    if check_member:
+        return templates.TemplateResponse("user/user_searchemail_found.html", context={'request': request, "member": member_info})
+    else:
+        return templates.TemplateResponse("user/user_searchemail_notfound.html", context={'request': request})
+
+
 
 
 # 이용약관
