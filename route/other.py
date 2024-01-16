@@ -40,8 +40,11 @@ async def FAQ(request:Request,     page_number: Optional[int] = 1,
 
     # 이 시간을 item 객체의 'ques_time' 속성에 저장한다.
     dict_form_data['ques_time'] = current_time
-    QnAs = QnA(**dict_form_data)
-    await collection_QnA.save(QnAs)
+    if dict_form_data['ques_title'] =='':
+        pass
+    else:
+        QnAs = QnA(**dict_form_data)
+        await collection_QnA.save(QnAs)
 
     user_dict = dict(form_data)
     conditions = {}
@@ -187,26 +190,23 @@ async def FAQ(request:Request):
 
 # 글 삭제
 @router.post("/other_delete", response_class=HTMLResponse) 
-async def FAQ(request:Request,     page_number: Optional[int] = 1, 
+async def FAQ(request:Request,object_id:PydanticObjectId,
+    page_number: Optional[int] = 1, 
     ques_title: Optional[str] = None,
     ques_writer: Optional[str] = None,
     ques_content: Optional[str] = None,
     ques_time: Optional[datetime] = None,
     ques_answer: Optional[str] = None):
+    
     form_data = await request.form()
     dict_form_data = dict(form_data)
-    current_time = datetime.now()
+    
+    collection_QnA.delete(dict_form_data['ques_id'])
 
-    # 이 시간을 item 객체의 'ques_time' 속성에 저장한다.
-    dict_form_data['ques_time'] = current_time
-    QnAs = QnA(**dict_form_data)
-    await collection_QnA.save(QnAs)
-
-    user_dict = dict(form_data)
     conditions = {}
 
     try:
-        search_word = user_dict["search_word"]
+        search_word = dict_form_data["search_word"]
     except:
         search_word = None    
     if ques_title:
@@ -238,10 +238,8 @@ async def FAQ(request:Request,     page_number: Optional[int] = 1,
     QnA_list, pagination = await collection_QnA.getsbyconditionswithpagination(
         conditions, page_number
     )
-    form_data = await request.form()
-    dict_form_data = dict(form_data)
-    collection_QnA.delete(dict_form_data['ques_id'])
-    
+
+
     return templates.TemplateResponse(
         name="/other/other_QnA.html",
         context={'request': request, 'QnAs': QnA_list, 'pagination': pagination},
