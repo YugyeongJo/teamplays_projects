@@ -78,15 +78,24 @@ async def FAQ(request:Request,     page_number: Optional[int] = 1,
     if ques_title:
         conditions.find({ 'ques_title': { '$regex': search_word }})
     pass
-
-    QnA_list, pagination = await collection_QnA.getsbyconditionswithpagination(
+    try:
+        QnA_list, pagination = await collection_QnA.getsbyconditionswithpagination(
         conditions, page_number
     )
-
-    return templates.TemplateResponse(
+        return templates.TemplateResponse(
         name="/other/other_QnA.html",
         context={'request': request, 'QnAs': QnA_list, 'pagination': pagination},
     )
+
+    except:
+        return templates.TemplateResponse(
+        name="/other/other_QnA_nonpage.html",
+        context={'request': request},
+    )
+
+@router.get("/other_QnA_nonpage", response_class=HTMLResponse) 
+async def FAQ(request:Request):
+    return templates.TemplateResponse(name="other/other_QnA_nonpage.html", context={'request':request})
 
 
 @router.get("/other_QnA/{page_number}")
@@ -139,14 +148,23 @@ async def list(
         conditions.find({ 'ques_title': { '$regex': search_word }})
     pass
 
-    QnA_list, pagination = await collection_QnA.getsbyconditionswithpagination(
+    try:
+        QnA_list, pagination = await collection_QnA.getsbyconditionswithpagination(
         conditions, page_number
     )
-
-    return templates.TemplateResponse(
+        return templates.TemplateResponse(
         name="/other/other_QnA.html",
         context={'request': request, 'QnAs': QnA_list, 'pagination': pagination},
     )
+
+    except:
+        return templates.TemplateResponse(
+        name="/other/other_QnA_nonpage.html",
+        context={'request': request},
+    )
+
+
+
 
 
 
@@ -235,14 +253,19 @@ async def FAQ(request:Request,object_id:PydanticObjectId,
     if ques_title:
         conditions.find({ 'ques_title': { '$regex': search_word }})
     pass
-
-    QnA_list, pagination = await collection_QnA.getsbyconditionswithpagination(
+    try:
+        QnA_list, pagination = await collection_QnA.getsbyconditionswithpagination(
         conditions, page_number
     )
-
-
-    return templates.TemplateResponse(
+        return templates.TemplateResponse(
         name="/other/other_QnA.html",
         context={'request': request, 'QnAs': QnA_list, 'pagination': pagination},
     )
+
+    except:
+        return templates.TemplateResponse(
+        name="/other/other_QnA_nonpage.html",
+        context={'request': request},
+    )
+
 
