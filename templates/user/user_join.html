@@ -2,62 +2,93 @@
 
 {% block main_container %}
 
-<div class="container input-form-backgroud row">
+<div class="container input-form-backgroud row" style="padding: 0px 400px 0px 400px;">
     <div class="input-form col-md-12 mx-auto">
         <h4 class="mb-3">회원가입</h4>
         <form class="validation-form" novalidate>
             <div class="mb-3">
                 <label for="name">이름</label>
-                <input type="text" class="form-control" name="user_name" id="name" placeholder="이름을 입력해주세요." value="" required>
+                <input type="text" class="form-control" name="user_name" id="name" placeholder="이름을 입력해주세요." value=""
+                    required>
             </div>
             <div class="mb-3">
                 <label for="name">휴대전화 번호</label>
-                <input type="text" class="form-control" name="user_phone" id="name" placeholder="휴대전화 번호를 입력해주세요." value="" required>
+                <input type="text" class="form-control" name="user_phone" id="name" placeholder="휴대전화 번호를 입력해주세요."
+                    value="" required>
             </div>
             <div class="mb-3">
                 <label for="ID">ID</label>
-                <input type="text" class="form-control" name="user_ID" id="id" placeholder="ID를 입력해주세요" required>
-                <button type="submit" onclick="window.open('/user/user_joincheck_ID', 'ID확인창', 'width=430, height=500, location=no, status=no, scrollbars=yes');">중복확인</button>      
-                <div>영소문자, 숫자 혼용하여 4~12글자 입력</div>      
+                <div style="display: flex;">
+                    <input type="text" class="form-control" name="user_ID" id="id" placeholder="ID를 입력해주세요" required>
+                    <button type="button"
+                        onclick="window.open('/user/user_joincheck_ID', 'ID확인창', 'width=430, height=500, location=no, status=no, scrollbars=yes');"
+                        style="width: 100px;">중복확인</button>
+                </div>
+                <div style="font-size: 70%; color:blue">영소문자, 숫자 혼용하여 4~12글자 입력</div>
             </div>
             <div class="mb-3">
                 <label for="password">Password</label>
-                <input type="text" class="form-control" name="user_pswd" id="password" placeholder="비밀번호를 입력해주세요" value="" required> 
-                <div>영소문자, 숫자 혼용하여 4~12글자 입력</div>    
+                <input type="password" class="form-control" name="user_pswd" id="password" placeholder="비밀번호를 입력해주세요"
+                    required>
+                <div style="font-size: 70%; color:blue">영소문자, 숫자 혼용하여 4~12글자 입력</div>
             </div>
             <div class="mb-3">
                 <label for="password_check">Password 확인</label>
-                <input type="text" class="form-control" id="password_check" placeholder="비밀번호를 입력해주세요" value="" required> 
-                <div>비밀번호 틀릴 경우 재입력</div>
+                <input type="password" class="form-control" name="user_pswd_check" id="password_check" placeholder="비밀번호를 입력해주세요" required>
+                <div style="font-size: 70%; color:blue">비밀번호 틀릴 경우 재입력</div>
             </div>
             <div class="mb-3">
                 <label for="email">이메일</label>
-                <input type="email" class="form-control" name="user_email" id="email" placeholder="you@example.com" required>
-                <button type="button" onclick="window.open('/user/user_joincheck_email', 'email확인창', 'width=430, height=500, location=no, status=no, scrollbars=yes');">중복확인</button>
+                <div style="display: flex;">
+                    <input type="email" class="form-control" name="user_email" id="email" placeholder="you@example.com"
+                        required>
+                    <button type="button"
+                        onclick="window.open('/user/user_joincheck_email', 'email확인창', 'width=430, height=500, location=no, status=no, scrollbars=yes');"
+                        style="width: 100px;">중복확인</button>
+                </div>
             </div>
             <div class="mb-3">
                 <label for="address">주소</label>
                 <input type="text" class="form-control" id="address" name="user_postcode" placeholder="우편번호" required>
-                <input type="text" class="form-control" id="address" name="user_address" placeholder="시/구/동 입력" required>
+                <input type="text" class="form-control" id="address" name="user_address" placeholder="시/구/동 입력"
+                    required>
             </div>
             <div class="mb-3">
                 <label for="address2">상세주소</label>
-                <input type="text" class="form-control" id="address2" name="user_detailed_address" placeholder="상세주소를 입력해주세요.">
+                <input type="text" class="form-control" id="address2" name="user_detailed_address"
+                    placeholder="상세주소를 입력해주세요.">
             </div>
             <div class="mb-3">
                 <label for="birth">생년월일</label>
-                <input type="text" class="form-control" id="birth" name="user_birth" placeholder="8자리 모두 입력해주세요. ex)20240112">
+                <input type="text" class="form-control" id="birth" name="user_birth"
+                    placeholder="8자리 모두 입력해주세요. ex)20240112">
             </div>
-            </div>
-            <hr class="mb-4">
-            <div class="custom-control custom-checkbox">
-                <input type="checkbox" class="custom-control-input" id="aggrement" required>
-                <label class="custom-control-label" for="aggrement">개인정보 수집 및 이용에 동의합니다.</label>
-            </div>
-            <div class="mb-4"></div>
-            <button class="btn btn-primary btn-lg btn-block" type="submit" formaction="/user/user_joincheck_ID" formmethod="post">가입 완료</button>
-        </form>
     </div>
+    <hr class="mb-4">
+    <div class="custom-control custom-checkbox">
+        <input type="checkbox" class="custom-control-input" id="aggrement" required>
+        <label class="custom-control-label" for="aggrement">개인정보 수집 및 이용에 동의합니다.</label>
+    </div>
+    <div class="mb-4"></div>
+    <button class="btn btn-primary btn-lg btn-block" type="submit" formaction="/user/user_login"
+        formmethod="post">가입 완료</button>
+    </form>
+
+    <script>
+        var form = document.querySelector('.validation-form');
+        
+        form.addEventListener('submit', function (event) {
+            var password = document.querySelector('#password').value;
+            var passwordCheck = document.querySelector('#password_check').value;
+
+            if (password !== passwordCheck) {
+                alert('비밀번호가 일치하지 않습니다.');
+                event.preventDefault();
+            }
+        });
+    </script>
 </div>
+
+
 
 {% endblock %}

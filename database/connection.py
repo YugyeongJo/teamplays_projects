@@ -7,6 +7,8 @@ from models.disease import diseases
 from models.institution import Institutions
 from models.member import members
 from models.trend import trends
+from models.QnA import QnA
+
 
 from motor.motor_asyncio import AsyncIOMotorClient
 
@@ -16,11 +18,12 @@ from utils.paginations import Paginations
 
 class Settings(BaseSettings):
     DATABASE_URL: Optional[str] = None
-    
+    db_uri: Optional[str] = None
+
     async def initialize_database(self):
         client = AsyncIOMotorClient(self.DATABASE_URL)
         await init_beanie(database=client.get_default_database(),
-                          document_models=[academicinfo, diseases, Institutions, members, trends])
+                          document_models=[academicinfo, diseases, Institutions, members, trends, QnA])
 
     class Config:
         env_file = ".env"
@@ -48,6 +51,41 @@ class Database:
     async def save(self, document) -> None:
         await document.create()
         return None   
+    
+    # 업데이트
+    async def update(self, id: PydanticObjectId, document) -> Any:
+        from pymongo import MongoClient
+        from dotenv import load_dotenv
+        import os
+
+        load_dotenv()
+        DB_URI = os.getenv('DB_URI')
+        # MongoDB 연결 설정
+        client = MongoClient(DB_URI)
+        db = client['teamplays']
+        collection = db['QnA']
+
+        updated_doc = await collection.update_one({"_id": id}, {"$set": document})
+        if updated_doc:
+            return True
+        return False
+    
+        # 삭제
+    async def delete(self, id: PydanticObjectId) -> Any:
+        from pymongo import MongoClient
+        from dotenv import load_dotenv
+        import os
+
+        load_dotenv()
+        DB_URI = os.getenv('DB_URI')
+        # MongoDB 연결 설정
+        client = MongoClient(DB_URI)
+        db = client['teamplays']
+        collection = db['QnA']
+        deleted_doc = await collection.delete_one({"_id": id})
+        if deleted_doc:
+            return True
+        return False
      
     # column 값으로 여러 Documents 가져오기
     async def getsbyconditions(self, conditions:dict) -> [Any]:

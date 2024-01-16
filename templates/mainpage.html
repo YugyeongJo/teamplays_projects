@@ -26,13 +26,15 @@
                 <ul class="nav nav-pills">
                     <li class="nav-item"><a href="/user/user_login" class="nav-link" aria-current="page">로그인/로그아웃</a>
                     </li>
-                    <li class="nav-item"><a href="/user/user_privacypolicy" class="nav-link">회원가입</a></li>
                     <li class="nav-item"><a href="/user/user_mypage" class="nav-link">마이페이지</a></li>
                     <li class="nav-item"><a href="/other/other_FAQ" class="nav-link">FAQ</a></li>
+                    <li class="nav-item"><a href="/other/other_QnA" class="nav-link">QnA</a></li>
+
                     <li class="nav-item"><a href="/manag/manag_manager" class="nav-link">관리자</a></li>
+                    
                 </ul>
                 <div>
-                    <form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3" role="search">
+                    <form role="search">
                         <input type="search" class="form-control" placeholder="Search..." aria-label="Search">
                     </form>
                 </div>
@@ -46,19 +48,19 @@
     <main class="container">
 
         {% block main_container %}
-            <a class="btn btn-outline-secondary d-inline-flex align-items-center" href="/search/search_raredisease">
+            <a class="btn btn-primary d-inline-flex align-items-center" href="/search/search_raredisease">
                 희귀질환 검색
                 <svg class="bi ms-1" width="20" height="20">
                     <use xlink:href="#arrow-right-short"></use>
                 </svg>
             </a>
-            <a class="btn btn-outline-secondary d-inline-flex align-items-center" href="/search/search_symptom">
+            <a class="btn btn-primary d-inline-flex align-items-center" href="/search/search_symptom">
                 증상 검색
                 <svg class="bi ms-1" width="20" height="20">
                     <use xlink:href="#arrow-right-short"></use>
                 </svg>
             </a>
-            <a class="btn btn-outline-secondary d-inline-flex align-items-center" href="/search/search_institution">
+            <a class="btn btn-primary d-inline-flex align-items-center" href="/search/search_institution">
                 의료기관 검색
                 <svg class="bi ms-1" width="20" height="20">
                     <use xlink:href="#arrow-right-short"></use>
@@ -70,7 +72,7 @@
                 낱말구름
             </div>
             
-            <a class="btn btn-outline-secondary d-inline-flex align-items-center" href="/info/info_academicinfo">
+            <a class="btn btn-primary d-inline-flex align-items-center" href="/info/info_academicinfo">
                 학술정보
                 <svg class="bi ms-1" width="20" height="20">
                     <use xlink:href="#arrow-right-short"></use>
@@ -78,7 +80,7 @@
             </a>
             
             
-            <a href="/info/info_trend" class="btn btn-outline-secondary d-inline-flex align-items-center">
+            <a href="/info/info_trend" class="btn btn-primary d-inline-flex align-items-center">
                 최신동향
                 <svg class="bi ms-1" width="20" height="20">
                     <use xlink:href="#arrow-right-short"></use>
@@ -96,56 +98,41 @@
 
         <div class="container">
             <footer class="py-5">
-                <div class="row">
+                <div class="row justify-content-between">
                     <div class="col-6 col-md-2 mb-3">
-                        <h5>Section</h5>
+                        <h5>희귀질환</h5>
                         <ul class="nav flex-column">
-                            <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary">Home</a></li>
-                            <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary">Features</a>
+                            <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary">희귀질환 검색</a></li>
+                            <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary">증상 검색</a>
                             </li>
-                            <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary">Pricing</a>
+                            <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary">의료기관 검색</a>
                             </li>
-                            <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary">FAQs</a></li>
-                            <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary">About</a>
+                            <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary">학술정보</a></li>
+                            <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary">최신동향</a>
                             </li>
                         </ul>
                     </div>
                     <div class="col-6 col-md-2 mb-3">
-                        <h5>Section</h5>
+                        <h5>고객서비스</h5>
                         <ul class="nav flex-column">
-                            <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary">Home</a></li>
-                            <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary">Features</a>
+                            <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary">회원가입</a></li>
+                            <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary">로그인/로그아웃</a>
                             </li>
-                            <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary">Pricing</a>
+                            <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary">마이페이지</a>
                             </li>
-                            <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary">FAQs</a></li>
-                            <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary">About</a>
+                            <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary">FAQ</a></li>
+                            <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary">QnA</a>
                             </li>
                         </ul>
                     </div>
-
-                    <div class="col-6 col-md-2 mb-3">
-                        <h5>Section</h5>
-                        <ul class="nav flex-column">
-                            <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary">Home</a></li>
-                            <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary">Features</a>
-                            </li>
-                            <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary">Pricing</a>
-                            </li>
-                            <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary">FAQs</a></li>
-                            <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary">About</a>
-                            </li>
-                        </ul>
-                    </div>
-
                     <div class="col-md-5 offset-md-1 mb-3">
                         <form>
-                            <h5>Subscribe to our newsletter</h5>
-                            <p>Monthly digest of what's new and exciting from us.</p>
+                            <h5>무료 뉴스레터 구독</h5>
+                            <p>메일로 희귀질환 관련 소식을 받아보세요.</p>
                             <div class="d-flex flex-column flex-sm-row w-100 gap-2">
                                 <label for="newsletter1" class="visually-hidden">Email address</label>
-                                <input id="newsletter1" type="text" class="form-control" placeholder="Email address">
-                                <button class="btn btn-primary" type="button">Subscribe</button>
+                                <input type="email" id="newsletter1" type="text" class="form-control" placeholder="Email address">
+                                <button class="btn btn-primary" type="button">구독</button>
                             </div>
                         </form>
                     </div>
