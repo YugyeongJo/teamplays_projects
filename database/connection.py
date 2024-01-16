@@ -53,20 +53,12 @@ class Database:
         return None   
     
     # 업데이트
-    async def update(self, id: PydanticObjectId, document) -> Any:
-        from pymongo import MongoClient
-        from dotenv import load_dotenv
-        import os
-
-        load_dotenv()
-        DB_URI = os.getenv('DB_URI')
-        # MongoDB 연결 설정
-        client = MongoClient(DB_URI)
-        db = client['teamplays']
-        collection = db['QnA']
-
-        updated_doc = await collection.update_one({"_id": id}, {"$set": document})
-        if updated_doc:
+    async def update_one(self, id: PydanticObjectId, dic) -> Any:
+        doc = await self.model.get(id)
+        if doc:
+            for key, value in dic.items():
+                setattr(doc, key, value)
+            await doc.save()
             return True
         return False
     
