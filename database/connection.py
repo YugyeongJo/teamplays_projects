@@ -7,6 +7,8 @@ from models.disease import diseases
 from models.institution import Institutions
 from models.member import members
 from models.trend import trends
+from models.QnA import QnA
+
 
 from motor.motor_asyncio import AsyncIOMotorClient
 
@@ -20,7 +22,7 @@ class Settings(BaseSettings):
     async def initialize_database(self):
         client = AsyncIOMotorClient(self.DATABASE_URL)
         await init_beanie(database=client.get_default_database(),
-                          document_models=[academicinfo, diseases, Institutions, members, trends])
+                          document_models=[academicinfo, diseases, Institutions, members, trends, QnA])
 
     class Config:
         env_file = ".env"
