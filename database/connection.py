@@ -71,22 +71,29 @@ class Database:
         return False
     
         # 삭제
-    async def delete(self, id: PydanticObjectId) -> Any:
-        from pymongo import MongoClient
-        from dotenv import load_dotenv
-        import os
+    # async def delete(self, id: PydanticObjectId) -> Any:
+    #     from pymongo import MongoClient
+    #     from dotenv import load_dotenv
+    #     import os
 
-        load_dotenv()
-        DB_URI = os.getenv('DB_URI')
-        # MongoDB 연결 설정
-        client = MongoClient(DB_URI)
-        db = client['teamplays']
-        collection = db['QnA']
-        deleted_doc = await collection.delete_one({"_id": id})
-        if deleted_doc:
+    #     load_dotenv()
+    #     DB_URI = os.getenv('DB_URI')
+    #     # MongoDB 연결 설정
+    #     client = MongoClient(DB_URI)
+    #     db = client['teamplays']
+    #     collection = db['QnA']
+    #     deleted_doc = await collection.delete_one({"_id": id})
+    #     if deleted_doc:
+    #         return True
+    #     return False
+     
+    async def delete_one(self, id: PydanticObjectId) -> bool:
+        doc = await self.model.get(id)
+        if doc:
+            await doc.delete()
             return True
         return False
-     
+
     # column 값으로 여러 Documents 가져오기
     async def getsbyconditions(self, conditions:dict) -> [Any]:
         documents = await self.model.find(conditions).to_list()  # find({})

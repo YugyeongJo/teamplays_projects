@@ -188,8 +188,9 @@ async def FAQ(request:Request):
 
     return templates.TemplateResponse(name="other/other_QnA.html", context={'request':request})
 
+
 # 글 삭제
-@router.post("/other_delete", response_class=HTMLResponse) 
+@router.post("/other_delete/{object_id}", response_class=HTMLResponse) 
 async def FAQ(request:Request,object_id:PydanticObjectId,
     page_number: Optional[int] = 1, 
     ques_title: Optional[str] = None,
@@ -197,11 +198,11 @@ async def FAQ(request:Request,object_id:PydanticObjectId,
     ques_content: Optional[str] = None,
     ques_time: Optional[datetime] = None,
     ques_answer: Optional[str] = None):
+    await collection_QnA.delete_one(object_id)
     
     form_data = await request.form()
     dict_form_data = dict(form_data)
     
-    collection_QnA.delete(dict_form_data['ques_id'])
 
     conditions = {}
 
