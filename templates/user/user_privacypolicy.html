@@ -130,29 +130,22 @@
             <script>
                 // 모두동의
                 function checkAll() {
-                    var checkallCheckbox = document.getElementById("chk_checkall");
-                    var otherCheckboxes = document.querySelectorAll(".other-checkboxes input[type='checkbox']");
-                    var counter = 0
-                    for (var i = 0; i < otherCheckboxes.length; i++) {
-                        
-                        otherCheckboxes[i].checked = checkallCheckbox.checked;
+    var checkallCheckbox = document.getElementById("chk_checkall");
+    var otherCheckboxes = document.querySelectorAll(".other-checkboxes input[type='checkbox']");
+    var submitButton = document.getElementById("btn_submit");  // 등록 버튼을 가져옵니다.
 
-                    }
-                    counter++
-                    if (counter % 2 == 0) {
-                        allChecked = false;
-                    }
-                    else {
-                        allChecked = true;
-                    }
+    for (var i = 0; i < otherCheckboxes.length; i++) {
+        otherCheckboxes[i].checked = checkallCheckbox.checked;
+    }
 
-                    if (allChecked) {
-                        submitButton.disabled = false;
-                    }
-                    else {
-                        submitButton.disabled = true;
-                    }
-                }
+    // '모두 동의' 체크박스의 체크 상태에 따라 '등록' 버튼을 활성화/비활성화 합니다.
+    if (checkallCheckbox.checked) {
+        submitButton.disabled = false;
+    } else {
+        submitButton.disabled = true;
+    }
+}
+
 
                 // 필수약관 미동의시 가입불가
                 function checkAgreement() {
