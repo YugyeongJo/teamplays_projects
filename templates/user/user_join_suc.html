@@ -1,10 +1,12 @@
 {% extends "mainpage.html"%}
 
 {% block main_container %}
-<div class="container justify-content-center" style="padding: 100px 400px 100px 400px;">
-    <img src="" alt="">
-    <h2>환영합니다!</h2>
-    <h3>회원가입을 축하합니다.</h3>
-    <button class="btn btn-primary" type="submit" formaction="/user/user_login" formmethod="get">시작하기</button>
+<div class="container justify-content-center " style="padding: 100px 400px 100px 400px;">
+    <form >
+        <img src="" alt="">
+        <h2 >🎉환영합니다🎉</h2>
+        <h3>회원가입을 축하합니다.</h3>
+        <button class="btn btn-primary" formaction="/user/user_login">시작하기</button>
+    </form>
 </div>
 {% endblock %}
