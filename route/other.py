@@ -180,26 +180,70 @@ async def FAQ(request:Request):
     form_data = await request.form()
     dict_form_data = dict(form_data)
 
-    QnA_list = await collection_QnA.get_all()
-    QnA_list = [answer.dict() for answer in QnA_list]
-
-    for i in QnA_list:
-        if dict_form_data['ques_id'] == i['id']:
-            dict_form_data['ques_title'] = i['ques_title']
-            dict_form_data['ques_writer'] = i['ques_writer']
-            dict_form_data['ques_content'] = i['ques_content']
-            dict_form_data['ques_time'] = i['ques_time']
-            break
-
-
     QnAs = QnA(**dict_form_data)
-    await collection_QnA.save(QnAs)
+    await collection_QnA.update(dict_form_data['ques_id'], QnAs)
 
     return templates.TemplateResponse(name="other/other_QnA.html", context={'request':request})
 
 # 글 삭제
 @router.post("/other_delete", response_class=HTMLResponse) 
-async def FAQ(request:Request):
+async def FAQ(request:Request,     page_number: Optional[int] = 1, 
+    ques_title: Optional[str] = None,
+    ques_writer: Optional[str] = None,
+    ques_content: Optional[str] = None,
+    ques_time: Optional[datetime] = None,
+    ques_answer: Optional[str] = None):
     form_data = await request.form()
     dict_form_data = dict(form_data)
-    return templates.TemplateResponse(name="other/other_QnA.html", context={'request':request})
+    current_time = datetime.now()
+
+    # 이 시간을 item 객체의 'ques_time' 속성에 저장한다.
+    dict_form_data['ques_time'] = current_time
+    QnAs = QnA(**dict_form_data)
+    await collection_QnA.save(QnAs)
+
+    user_dict = dict(form_data)
+    conditions = {}
+
+    try:
+        search_word = user_dict["search_word"]
+    except:
+        search_word = None    
+    if ques_title:
+        conditions.update({"ques_title": {'$regex': ques_title}})
+    if ques_writer:
+        conditions.update({"ques_writer": {'$regex': ques_writer}})
+    if ques_content:
+        conditions.update({"ques_content": {'$regex': ques_content}})
+    if ques_time:
+        conditions.update({"ques_time": {'$regex': ques_time}})
+    if ques_answer:
+        conditions.update({"ques_answer": {'$regex': ques_answer}})
+    if search_word:
+        conditions.update({
+            "$or": [
+                {"ques_title": {'$regex': search_word}},
+                {"ques_writer": {'$regex': search_word}},
+                {"ques_content": {'$regex': search_word}},
+                {"ques_time": {'$regex': search_word}},
+                {"ques_answer": {'$regex': search_word}},
+            ]
+        })
+    pass
+
+    if ques_title:
+        conditions.find({ 'ques_title': { '$regex': search_word }})
+    pass
+
+    QnA_list, pagination = await collection_QnA.getsbyconditionswithpagination(
+        conditions, page_number
+    )
+    form_data = await request.form()
+    dict_form_data = dict(form_data)
+    collection_QnA.delete(dict_form_data['ques_id'])
+    
+    return templates.TemplateResponse(
+        name="/other/other_QnA.html",
+        context={'request': request, 'QnAs': QnA_list, 'pagination': pagination},
+    )
+
