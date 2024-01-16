@@ -122,7 +122,7 @@
                 가능합니다.
             </span>
             <div>
-                <button type="button" id="btn_submit" onclick="location.href='/user/user_join'">동의하고 가입하기</button>
+                <button type="button" id="btn_submit" onclick="location.href='/user/user_join'" disabled>동의하고 가입하기</button>
             </div>
 
 
@@ -149,9 +149,10 @@
                             break;
                         }
                     }
-                    if (allChecked && agreeAllCheckbox.checked) {
+                    if (allChecked || agreeAllCheckbox.checked) {
                         submitButton.disabled = false;
-                    } else {
+                    }
+                    else {
                         submitButton.disabled = true;
                     }
                 }
