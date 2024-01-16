@@ -15,6 +15,9 @@
                 <label for="name">휴대전화 번호</label>
                 <input type="text" class="form-control" name="user_phone" id="name" placeholder="휴대전화 번호를 입력해주세요."
                     value="" required>
+                <button type="button"
+                    onclick="window.open('/user/user_joincheck_email', 'certify확인창', 'width=430, height=500, location=no, status=no, scrollbars=yes');"
+                    style="width: 100px;">인증하기</button>
             </div>
             <div class="mb-3">
                 <label for="ID">ID</label>
@@ -34,7 +37,8 @@
             </div>
             <div class="mb-3">
                 <label for="password_check">Password 확인</label>
-                <input type="password" class="form-control" name="user_pswd_check" id="password_check" placeholder="비밀번호를 입력해주세요" required>
+                <input type="password" class="form-control" name="user_pswd_check" id="password_check"
+                    placeholder="비밀번호를 입력해주세요" required>
                 <div style="font-size: 70%; color:blue">비밀번호 틀릴 경우 재입력</div>
             </div>
             <div class="mb-3">
@@ -70,13 +74,13 @@
         <label class="custom-control-label" for="aggrement">개인정보 수집 및 이용에 동의합니다.</label>
     </div>
     <div class="mb-4"></div>
-    <button class="btn btn-primary btn-lg btn-block" type="submit" formaction="/user/user_join_suc"
-        formmethod="post">가입 완료</button>
+    <button class="btn btn-primary btn-lg btn-block" type="submit" formaction="/user/user_join_suc" formmethod="post">가입
+        완료</button>
     </form>
 
     <script>
         var form = document.querySelector('.validation-form');
-        
+
         form.addEventListener('submit', function (event) {
             var password = document.querySelector('#password').value;
             var passwordCheck = document.querySelector('#password_check').value;
