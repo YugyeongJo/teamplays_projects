@@ -96,6 +96,17 @@ async def mypage(request:Request):
     else :
         return templates.TemplateResponse(name="user/user_joincheck_emailcheck_suc.html", context={'request':request})
 
+# 회원가입 성공 페이지
+@router.get("/user_join_suc", response_class=HTMLResponse) 
+async def mypage(request:Request):
+    pass
+    return templates.TemplateResponse(name="user/user_join_suc.html", context={'request':request})
+
+@router.post("/user_join_suc", response_class=HTMLResponse) 
+async def mypage(request:Request):
+    pass
+    return templates.TemplateResponse(name="user/user_join_suc.html", context={'request':request})
+
 
 # 로그인
 @router.get("/user_login", response_class=HTMLResponse) 
