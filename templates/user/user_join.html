@@ -34,8 +34,8 @@
             </div>
             <div class="mb-3">
                 <label for="password_check">Password 확인</label>
-                <input type="password" class="form-control" name="user_pswd" id="password_check" placeholder="비밀번호를 입력해주세요" required>
-                <div style="font-size: 70%; color:bluered">비밀번호 틀릴 경우 재입력</div>
+                <input type="password" class="form-control" name="user_pswd_check" id="password_check" placeholder="비밀번호를 입력해주세요" required>
+                <div style="font-size: 70%; color:blue">비밀번호 틀릴 경우 재입력</div>
             </div>
             <div class="mb-3">
                 <label for="email">이메일</label>
@@ -75,14 +75,15 @@
     </form>
 
     <script>
-        var passwordInput = document.getElementById('password');
-        var passwordCheckInput = document.getElementById('password_check');
-    
-        passwordCheckInput.addEventListener('input', function () {
-            if (passwordCheckInput.value !== passwordInput.value) {
-                passwordCheckInput.setCustomValidity('비밀번호가 일치하지 않습니다.');
-            } else {
-                passwordCheckInput.setCustomValidity('');
+        var form = document.querySelector('.validation-form');
+        
+        form.addEventListener('submit', function (event) {
+            var password = document.querySelector('#password').value;
+            var passwordCheck = document.querySelector('#password_check').value;
+
+            if (password !== passwordCheck) {
+                alert('비밀번호가 일치하지 않습니다.');
+                event.preventDefault();
             }
         });
     </script>
