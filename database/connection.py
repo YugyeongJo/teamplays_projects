@@ -64,7 +64,10 @@ class Database:
         documents = await self.model.find(conditions).skip(pagination.start_record_number-1).limit(pagination.records_per_page).to_list()
         if documents:
             return documents, pagination
-        return False    
+        return False  
+    async def to_list(self, cursor, length=None):
+        # MongoDB 커서의 to_list 메소드를 비동기로 호출합니다.
+        return await cursor.to_list(length) 
 
 if __name__ == '__main__':
     settings = Settings()
