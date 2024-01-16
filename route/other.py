@@ -196,17 +196,62 @@ async def FAQ(request:Request, object_id:PydanticObjectId):
 
 
 # 답글 달기
-@router.post("/other_reply", response_class=HTMLResponse) 
-async def FAQ(request:Request):
+@router.post("/other_reply/{object_id}", response_class=HTMLResponse) 
+async def FAQ(request:Request, object_id:PydanticObjectId,
+    page_number: Optional[int] = 1, 
+    ques_title: Optional[str] = None,
+    ques_writer: Optional[str] = None,
+    ques_content: Optional[str] = None,
+    ques_time: Optional[datetime] = None,
+    ques_answer: Optional[str] = None):
     form_data = await request.form()
     dict_form_data = dict(form_data)
+    await collection_QnA.update_one(object_id, dict_form_data)
+    conditions = {}
 
-    QnAs = QnA(**dict_form_data)
-    await collection_QnA.update(dict_form_data['ques_id'], QnAs)
+    try:
+        search_word = dict_form_data["search_word"]
+    except:
+        search_word = None    
+    if ques_title:
+        conditions.update({"ques_title": {'$regex': ques_title}})
+    if ques_writer:
+        conditions.update({"ques_writer": {'$regex': ques_writer}})
+    if ques_content:
+        conditions.update({"ques_content": {'$regex': ques_content}})
+    if ques_time:
+        conditions.update({"ques_time": {'$regex': ques_time}})
+    if ques_answer:
+        conditions.update({"ques_answer": {'$regex': ques_answer}})
+    if search_word:
+        conditions.update({
+            "$or": [
+                {"ques_title": {'$regex': search_word}},
+                {"ques_writer": {'$regex': search_word}},
+                {"ques_content": {'$regex': search_word}},
+                {"ques_time": {'$regex': search_word}},
+                {"ques_answer": {'$regex': search_word}},
+            ]
+        })
+    pass
 
-    return templates.TemplateResponse(name="other/other_QnA.html", context={'request':request})
+    if ques_title:
+        conditions.find({ 'ques_title': { '$regex': search_word }})
+    pass
+    try:
+        QnA_list, pagination = await collection_QnA.getsbyconditionswithpagination(
+        conditions, page_number
+    )
+        return templates.TemplateResponse(
+        name="/other/other_QnA.html",
+        context={'request': request, 'QnAs': QnA_list, 'pagination': pagination},
+    )
 
-
+    except:
+        return templates.TemplateResponse(
+        name="/other/other_QnA_nonpage.html",
+        context={'request': request},
+    )
 # 글 삭제
 @router.post("/other_delete/{object_id}", response_class=HTMLResponse) 
 async def FAQ(request:Request,object_id:PydanticObjectId,

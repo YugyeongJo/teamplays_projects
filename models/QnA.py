@@ -10,7 +10,6 @@ class QnA(Document):
     ques_content: Optional[str] = None
     ques_time: Optional[datetime] = None
     ques_answer: Optional[str] = None
-    object_id: Optional[str] = Field(None, alias="object_id")
     
   
     class Settings:

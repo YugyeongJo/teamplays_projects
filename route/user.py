@@ -199,3 +199,39 @@ async def mypage(request:Request):
 @router.post("/user_privacypolicy", response_class=HTMLResponse) 
 async def mypage(request:Request):
     return templates.TemplateResponse(name="user/user_privacypolicy.html", context={'request':request})
+
+
+# 회원가입 최종 확인 페이지
+
+@router.get("/user_join_finalcheck", response_class=HTMLResponse) 
+async def mypage(request:Request):
+    return templates.TemplateResponse(name="user/user_joincheck_ID.html", context={'request':request})
+
+@router.post("/user_join_finalcheck", response_class=HTMLResponse) 
+async def mypage(request:Request ):
+    form_data = await request.form()
+    dict_form_data = dict(form_data)
+    inputID = dict_form_data['user_ID']
+    inputEmail = dict_form_data['user_email']
+
+
+    check_list = await collection_member.get_all()
+    checks_list = [check.dict() for check in check_list]
+    
+    check_ID = False
+    # pass
+    for i in checks_list:
+        if i['user_ID'] == inputID :
+            check_ID = True
+            break
+        else:
+            if i['user_email'] == inputEmail:
+                check_ID = True
+                break
+
+    if check_ID:
+        return templates.TemplateResponse(name="user/user_join_fail.html", context={'request':request})
+    else :
+        member = members(**dict_form_data)
+        await collection_member.save(member)
+        return templates.TemplateResponse(name="user/user_join_suc.html", context={'request':request})
