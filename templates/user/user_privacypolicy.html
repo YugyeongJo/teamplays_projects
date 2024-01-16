@@ -2,12 +2,13 @@
 
 {% block main_container %}
 
-<div class="container">
+<div class="container justify-content-center" style="padding: 100px 400px 100px 400px;">
     <form action="" method="post">
-        <ul class="other-checkboxes" >
+        <ul class="other-checkboxes">
             <div id="c-checkbox-item_join-terms-fourteen" class="c-checkbox-item">
                 <div class="wrapper">
-                    <input type="checkbox" id="chk_checkall1" aria-hidden="true" class="required-agreement" onchange="checkAgreement()">
+                    <input type="checkbox" id="chk_checkall1" aria-hidden="true" class="required-agreement"
+                        onchange="checkAgreement()">
                     <label for="chk_checkall1" role="checkbox" aria-label="만 14세 이상입니다" aria-checked="false">
                         <i aria-hidden="true" class="icon icon-chk"></i>
                         <span aria-hidden="true">[필수] 만 14세 이상입니다</span>
@@ -16,7 +17,8 @@
             </div>
             <div id="c-checkbox-item_join-terms-service" class="c-checkbox-item ">
                 <div class="wrapper">
-                    <input type="checkbox" id="chk_checkall2" aria-hidden="true" class="required-agreement" onchange="checkAgreement()">
+                    <input type="checkbox" id="chk_checkall2" aria-hidden="true" class="required-agreement"
+                        onchange="checkAgreement()">
                     <label for="chk_checkall2" role="checkbox" aria-label="RDS 이용약관 동의" aria-checked="false">
                         <i aria-hidden="true" class="icon icon-chk"></i>
                         <span aria-hidden="true">[필수] RDS 이용약관 동의</span>
@@ -27,9 +29,9 @@
             </div>
             <div id="c-checkbox-item_join-terms-commerce" class="c-checkbox-item ">
                 <div class="wrapper">
-                    <input type="checkbox" id="chk_checkall3" aria-hidden="true" class="required-agreement" onchange="checkAgreement()">
-                    <label for="chk_checkall3" role="checkbox" aria-label="전자금융거래 이용약관 동의"
-                        aria-checked="false">
+                    <input type="checkbox" id="chk_checkall3" aria-hidden="true" class="required-agreement"
+                        onchange="checkAgreement()">
+                    <label for="chk_checkall3" role="checkbox" aria-label="전자금융거래 이용약관 동의" aria-checked="false">
                         <i aria-hidden="true" class="icon icon-chk"></i>
                         <span aria-hidden="true">[필수] 전자금융거래 이용약관 동의</span>
                     </label>
@@ -39,9 +41,9 @@
             </div>
             <div id="c-checkbox-item_join-terms-privacy-collect-use" class="c-checkbox-item ">
                 <div class="wrapper">
-                    <input type="checkbox" id="chk_checkall4" aria-hidden="true" class="required-agreement" onchange="checkAgreement()">
-                    <label for="chk_checkall4" role="checkbox" aria-label="개인정보 수집 및 이용 동의"
-                        aria-checked="false">
+                    <input type="checkbox" id="chk_checkall4" aria-hidden="true" class="required-agreement"
+                        onchange="checkAgreement()">
+                    <label for="chk_checkall4" role="checkbox" aria-label="개인정보 수집 및 이용 동의" aria-checked="false">
                         <i aria-hidden="true" class="icon icon-chk"></i>
                         <span aria-hidden="true">[필수] 개인정보 수집 및 이용 동의</span>
                     </label>
@@ -51,9 +53,9 @@
             </div>
             <div id="c-checkbox-item_agree-to-collect-third-part-information" class="c-checkbox-item ">
                 <div class="wrapper">
-                    <input type="checkbox" id="chk_checkall5" aria-hidden="true" class="required-agreement" onchange="checkAgreement()">
-                    <label for="chk_checkall5" role="checkbox" aria-label="개인정보 제3자 제공 동의"
-                        aria-checked="false">
+                    <input type="checkbox" id="chk_checkall5" aria-hidden="true" class="required-agreement"
+                        onchange="checkAgreement()">
+                    <label for="chk_checkall5" role="checkbox" aria-label="개인정보 제3자 제공 동의" aria-checked="false">
                         <i aria-hidden="true" class="icon icon-chk"></i>
                         <span aria-hidden="true">[필수] 개인정보 제3자 제공 동의</span>
                     </label>
@@ -76,8 +78,7 @@
             <div id="c-checkbox-item_agree-to-receive-ads" class="c-checkbox-item ">
                 <div class="wrapper">
                     <input type="checkbox" id="chk_checkall7" aria-hidden="true">
-                    <label for="chk_checkall7" role="checkbox" aria-label="광고성 정보 수신 동의"
-                        aria-checked="false">
+                    <label for="chk_checkall7" role="checkbox" aria-label="광고성 정보 수신 동의" aria-checked="false">
                         <i aria-hidden="true" class="icon icon-chk"></i>
                         <span aria-hidden="true">[선택] 광고성 정보 수신 동의</span>
                     </label>
@@ -108,7 +109,8 @@
         <div class="checkall checkall-first">
             <div id="c-checkbox-item_checkall" class="c-checkbox-item">
                 <div class="wrapper">
-                    <input type="checkbox" name="checkbox_all" id="chk_checkall" aria-hidden="true" onchange="checkAll()">
+                    <input type="checkbox" name="checkbox_all" id="chk_checkall" aria-hidden="true"
+                        onchange="checkAll()">
                     <label for="chk_checkall" role="checkbox" aria-label="모두 확인하였으며 동의합니다" aria-checked="false">
                         <i aria-hidden="true" class="icon icon-chk"></i>
                         <span aria-hidden="true">모두 확인하였으며 동의합니다.</span>
@@ -120,16 +122,16 @@
                 가능합니다.
             </span>
             <div>
-                <button type="button" id="btn_submit" onclick="location.href='/user/user_join'">동의하고 가입하기</button>
+                <button type="button" id="btn_submit" onclick="location.href='/user/user_join'" disabled>동의하고 가입하기</button>
             </div>
-            
-            
+
+
             <script>
                 // 모두동의
                 function checkAll() {
                     var checkallCheckbox = document.getElementById("chk_checkall");
                     var otherCheckboxes = document.querySelectorAll(".other-checkboxes input[type='checkbox']");
-            
+
                     for (var i = 0; i < otherCheckboxes.length; i++) {
                         otherCheckboxes[i].checked = checkallCheckbox.checked;
                     }
@@ -139,21 +141,22 @@
                     var requiredAgreements = document.querySelectorAll(".required-agreement");
                     var agreeAllCheckbox = document.getElementById("chk_checkall");
                     var submitButton = document.getElementById("btn_submit");
-                  
+
                     var allChecked = true;
                     for (var i = 0; i < requiredAgreements.length; i++) {
-                      if (!requiredAgreements[i].checked) {
-                        allChecked = false;
-                        break;
-                      }
+                        if (!requiredAgreements[i].checked) {
+                            allChecked = false;
+                            break;
+                        }
                     }
-                    if (allChecked && agreeAllCheckbox.checked) {
-                      submitButton.disabled = false;
-                    } else {
-                      submitButton.disabled = true;
+                    if (allChecked || agreeAllCheckbox.checked) {
+                        submitButton.disabled = false;
                     }
-                  }
-                
+                    else {
+                        submitButton.disabled = true;
+                    }
+                }
+
             </script>
     </form>
 </div>
