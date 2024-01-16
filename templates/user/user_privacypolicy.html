@@ -152,14 +152,14 @@
                     var requiredAgreements = document.querySelectorAll(".required-agreement");
                     var agreeAllCheckbox = document.getElementById("chk_checkall");
                     var submitButton = document.getElementById("btn_submit");
+                    var allChecked = true;
 
                     for (var i = 0; i < requiredAgreements.length; i++) {
                         if (!requiredAgreements[i].checked) {
                             allChecked = false;
+                            break
                         }
-                        else {
-                            var allChecked = true;
-                        }
+
                     }
                     if (allChecked) {
                         submitButton.disabled = false;
