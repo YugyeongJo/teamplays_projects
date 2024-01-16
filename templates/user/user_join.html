@@ -13,11 +13,13 @@
             </div>
             <div class="mb-3">
                 <label for="name">휴대전화 번호</label>
-                <input type="text" class="form-control" name="user_phone" id="name" placeholder="휴대전화 번호를 입력해주세요."
-                    value="" required>
-                <button type="button"
-                    onclick="window.open('/user/user_joincheck_email', 'certify확인창', 'width=430, height=500, location=no, status=no, scrollbars=yes');"
-                    style="width: 100px;">인증하기</button>
+                <div style="display: flex;">
+                    <input type="text" class="form-control" name="user_phone" id="name" placeholder="휴대전화 번호를 입력해주세요."
+                        value="" required>
+                    <button type="button"
+                        onclick="window.open('/(인증경로넣기)', 'certify확인창', 'width=430, height=500, location=no, status=no, scrollbars=yes');"
+                        style="width: 100px;">인증하기</button>
+                </div>
             </div>
             <div class="mb-3">
                 <label for="ID">ID</label>
