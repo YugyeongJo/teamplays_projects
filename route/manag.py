@@ -107,31 +107,20 @@ async def list(
     
     user_dict = dict(request._query_params)
     conditions = {}
+    search_word = request.query_params.get('search_word')
 
-    try:
-        search_word = user_dict["search_word"]
-    except:
-        search_word = None    
-    if ques_title:
-        conditions.update({"ques_title": {'$regex': ques_title}})
-    if ques_writer:
-        conditions.update({"ques_writer": {'$regex': ques_writer}})
-    if ques_content:
-        conditions.update({"ques_content": {'$regex': ques_content}})
-    if ques_time:
-        conditions.update({"ques_time": {'$regex': ques_time}})
-    if ques_answer:
-        conditions.update({"ques_answer": {'$regex': ques_answer}})
     if search_word:
         conditions.update({
             "$or": [
-                {"ques_title": {'$regex': search_word}},
-                {"ques_writer": {'$regex': search_word}},
-                {"ques_content": {'$regex': search_word}},
-                {"ques_time": {'$regex': search_word}},
-                {"ques_answer": {'$regex': search_word}},
+                {"dise_KCD_code": {'$regex': search_word}},
+                {"dise_group": {'$regex': search_word}},
+                {"dise_name_kr": {'$regex': search_word}},
+                {"dise_name_en": {'$regex': search_word}},
+                {"dise_support": {'$regex': search_word}},
+                {"dise_url": {'$regex': search_word}}
             ]
         })
+
     pass
 
     if ques_title:
@@ -144,7 +133,7 @@ async def list(
     )
         return templates.TemplateResponse(
         name="/manag/manag_manager.html",
-        context={'request': request, 'QnAs': QnA_list, 'pagination': pagination},
+        context={'request': request, 'QnAs': QnA_list, 'pagination': pagination,'search_word' : search_word},
     )
 
     except:

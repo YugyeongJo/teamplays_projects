@@ -40,7 +40,8 @@ async def FAQ(request:Request,     page_number: Optional[int] = 1,
     formatted_time = current_time.strftime("%Y-%m-%d %H:%M:%S")
     # 이 시간을 item 객체의 'ques_time' 속성에 저장한다.
     dict_form_data['ques_time'] = formatted_time
-    if dict_form_data['ques_title'] =='':
+
+    if dict_form_data['ques_title'] =='': # title은 필수조건, 오류로 인한 저장을 방지하기 위한 구문
         pass
     else:
         QnAs = QnA(**dict_form_data)
