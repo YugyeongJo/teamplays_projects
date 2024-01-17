@@ -13,7 +13,7 @@
             <div class="mb-3">
                 <label for="user_phonenumber">휴대전화 번호</label>
                 <div style="display: flex;">
-                    <input type="text" class="form-control" name="user_phonenumber" id="user_phonenumber" placeholder="ex) 010-1234-1234"
+                    <input type="text" class="form-control" name="user_phone" id="user_phonenumber" placeholder="ex) 010-1234-1234"
                         value="">
                     <button type="button"
                         onclick="window.open('/(인증경로넣기)', 'certify확인창', 'width=430, height=500, location=no, status=no, scrollbars=yes');"
@@ -82,8 +82,8 @@
         var form = document.querySelector('.validation-form');
 
         form.addEventListener('submit', function (event) {
-            var password = document.querySelector('#password').value;
-            var passwordCheck = document.querySelector('#password_check').value;
+            var password = document.querySelector('#user_pswd').value;
+            var passwordCheck = document.querySelector('#user_pswd_check').value;
 
             if (password !== passwordCheck) {
                 alert('비밀번호가 일치하지 않습니다.');
