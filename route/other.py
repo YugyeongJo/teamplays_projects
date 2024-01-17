@@ -49,20 +49,8 @@ async def FAQ(request:Request,     page_number: Optional[int] = 1,
     user_dict = dict(form_data)
     conditions = {}
 
-    try:
-        search_word = user_dict["search_word"]
-    except:
-        search_word = None    
-    if ques_title:
-        conditions.update({"ques_title": {'$regex': ques_title}})
-    if ques_writer:
-        conditions.update({"ques_writer": {'$regex': ques_writer}})
-    if ques_content:
-        conditions.update({"ques_content": {'$regex': ques_content}})
-    if ques_time:
-        conditions.update({"ques_time": {'$regex': ques_time}})
-    if ques_answer:
-        conditions.update({"ques_answer": {'$regex': ques_answer}})
+    search_word = request.query_params.get('search_word')
+  
     if search_word:
         conditions.update({
             "$or": [
@@ -84,7 +72,7 @@ async def FAQ(request:Request,     page_number: Optional[int] = 1,
     )
         return templates.TemplateResponse(
         name="/other/other_QnA.html",
-        context={'request': request, 'QnAs': QnA_list, 'pagination': pagination},
+        context={'request': request, 'QnAs': QnA_list, 'pagination': pagination,'search_word':search_word},
     )
 
     except:
@@ -118,20 +106,8 @@ async def list(
     user_dict = dict(request._query_params)
     conditions = {}
 
-    try:
-        search_word = user_dict["search_word"]
-    except:
-        search_word = None    
-    if ques_title:
-        conditions.update({"ques_title": {'$regex': ques_title}})
-    if ques_writer:
-        conditions.update({"ques_writer": {'$regex': ques_writer}})
-    if ques_content:
-        conditions.update({"ques_content": {'$regex': ques_content}})
-    if ques_time:
-        conditions.update({"ques_time": {'$regex': ques_time}})
-    if ques_answer:
-        conditions.update({"ques_answer": {'$regex': ques_answer}})
+    search_word = request.query_params.get('search_word')
+  
     if search_word:
         conditions.update({
             "$or": [
@@ -154,7 +130,7 @@ async def list(
     )
         return templates.TemplateResponse(
         name="/other/other_QnA.html",
-        context={'request': request, 'QnAs': QnA_list, 'pagination': pagination},
+        context={'request': request, 'QnAs': QnA_list, 'pagination': pagination,'search_word':search_word},
     )
 
     except:
@@ -209,20 +185,8 @@ async def FAQ(request:Request, object_id:PydanticObjectId,
     await collection_QnA.update_one(object_id, dict_form_data)
     conditions = {}
 
-    try:
-        search_word = dict_form_data["search_word"]
-    except:
-        search_word = None    
-    if ques_title:
-        conditions.update({"ques_title": {'$regex': ques_title}})
-    if ques_writer:
-        conditions.update({"ques_writer": {'$regex': ques_writer}})
-    if ques_content:
-        conditions.update({"ques_content": {'$regex': ques_content}})
-    if ques_time:
-        conditions.update({"ques_time": {'$regex': ques_time}})
-    if ques_answer:
-        conditions.update({"ques_answer": {'$regex': ques_answer}})
+    search_word = request.query_params.get('search_word')
+  
     if search_word:
         conditions.update({
             "$or": [
@@ -244,7 +208,7 @@ async def FAQ(request:Request, object_id:PydanticObjectId,
     )
         return templates.TemplateResponse(
         name="/other/other_QnA.html",
-        context={'request': request, 'QnAs': QnA_list, 'pagination': pagination},
+        context={'request': request, 'QnAs': QnA_list, 'pagination': pagination,'search_word':search_word},
     )
 
     except:
@@ -269,20 +233,8 @@ async def FAQ(request:Request,object_id:PydanticObjectId,
 
     conditions = {}
 
-    try:
-        search_word = dict_form_data["search_word"]
-    except:
-        search_word = None    
-    if ques_title:
-        conditions.update({"ques_title": {'$regex': ques_title}})
-    if ques_writer:
-        conditions.update({"ques_writer": {'$regex': ques_writer}})
-    if ques_content:
-        conditions.update({"ques_content": {'$regex': ques_content}})
-    if ques_time:
-        conditions.update({"ques_time": {'$regex': ques_time}})
-    if ques_answer:
-        conditions.update({"ques_answer": {'$regex': ques_answer}})
+    search_word = request.query_params.get('search_word')
+  
     if search_word:
         conditions.update({
             "$or": [
@@ -304,7 +256,7 @@ async def FAQ(request:Request,object_id:PydanticObjectId,
     )
         return templates.TemplateResponse(
         name="/other/other_QnA.html",
-        context={'request': request, 'QnAs': QnA_list, 'pagination': pagination},
+        context={'request': request, 'QnAs': QnA_list, 'pagination': pagination,'search_word':search_word},
     )
 
     except:

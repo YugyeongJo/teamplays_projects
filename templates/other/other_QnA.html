@@ -6,15 +6,11 @@
 <div class="row">
     <div class="col-2">
       <select class="form-control" name="key_name">
-        <option value="
-        ques_title
-            " {{ 'selected' if request._query_params.key_name=='
-            ques_title
-            ' else '' }}>제목</option>
+        <option value="dise_name_kr" {{ 'selected' if request._query_params.key_name=='dise_name_kr' else '' }}>제목</option>
       </select>
     </div>
     <div class="col-6">
-      <input class="form-control" placeholder="Enter Search!" name="search_word" value="{{request._query_params.word}}">
+      <input class="form-control" placeholder="Enter Search!" name="search_word" value="{{request._query_params.search_word}}">
     </div>
     <div class="col-4">
       <button type="submit" class="btn btn-primary" formaction="/other/other_QnA"

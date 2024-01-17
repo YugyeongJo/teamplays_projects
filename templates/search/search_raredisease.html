@@ -54,26 +54,14 @@
     <div class="row">
       <div class="col-2">
         <select class="form-control" name="key_name">
-          <option value="
-              dise_name_kr
-              " {{ 'selected' if request._query_params.key_name=='
-              dise_name_kr
-              ' else '' }}>희귀 질환 명</option>
-          <option value="
-              dise_name_kr
-              " {{ 'selected' if request._query_params.key_name=='
-              dise_name_kr
-              ' else '' }}>KCD코드</option>
-          <option value="
-              dise_spc_code
-              " {{ 'selected' if request._query_params.key_name=='
-              dise_spc_code
-              ' else '' }}>산정특례 특정기호</option>
+          <option value="dise_name_kr" {{ 'selected' if request._query_params.key_name=='dise_name_kr' else '' }}>희귀 질환 명</option>
+          <option value="dise_KCD_code" {{ 'selected' if request._query_params.key_name=='dise_KCD_code' else '' }}>KCD코드</option>
+          <option value="dise_spc_code" {{ 'selected' if request._query_params.key_name=='dise_spc_code' else '' }}>산정특례 특정기호</option>
         </select>
+        
       </div>
       <div class="col-6">
-        <input class="form-control" placeholder="Enter Search!" name="search_word"
-          value="{{request._query_params.word}}">
+        <input class="form-control" placeholder="Enter Search!" name="search_word" value="{{request._query_params.word}}">
       </div>
       <div class="col-4">
         <button type="submit" class="btn btn-primary" formaction="/search/search_raredisease"
@@ -118,28 +106,25 @@
       <nav aria-label="Page navigation">
         <ul class="pagination justify-content-center">
           <li class="page-item {{ '' if pagination.has_previous_block else 'disabled' }}">
-            <button type="submit" class="page-link" formaction="/search/search_raredisease/{{pagination.first_page}}">
-              맨 처음
-            </button>
+            <button type="submit" class="page-link" formaction="/search/search_raredisease/{{pagination.first_page}}?key_name={{ request._query_params.key_name|urlencode }}&search_word={{ search_word }}">맨 처음</button>
 
           </li>
           <li class="page-item {{ '' if pagination.has_previous_page else 'disabled' }}">
-            <button type="submit" class="page-link"
-              formaction="/search/search_raredisease/{{pagination.previous_page}}">이전</button>
+            <button type="submit" class="page-link" formaction="/search/search_raredisease/{{pagination.previous_page}}?key_name={{ request._query_params.key_name|urlencode }}&search_word={{ search_word }}">이전</button>
           </li>
           {% for page_num in pagination.current_page_range %}
           <li class="page-item {{ 'active' if page_num == pagination.current_page else '' }}">
-            <button type="submit" class="page-link" formaction="/search/search_raredisease/{{ page_num }}">
-              {{page_num}}
-            </button>
+            <button type="submit" class="page-link" formaction="/search/search_raredisease/{{ page_num }}?key_name={{ request._query_params.key_name|urlencode }}&search_word={{ search_word}}">{{ page_num }}</button>
+
+
           </li>
           {% endfor %}
           <li class="page-item {{ '' if pagination.has_next_page else 'disabled' }}">
             <button type="submit" class="page-link"
-              formaction="/search/search_raredisease/{{ pagination.next_page }}">다음</button>
+              formaction="/search/search_raredisease/{{ pagination.next_page }}?key_name={{ request._query_params.key_name|urlencode }}&search_word={{ search_word }}">다음</button>
           </li>
           <li class="page-item {{ '' if pagination.has_next_block else 'disabled' }}">
-            <button type="submit" class="page-link" formaction="/search/search_raredisease/{{ pagination.last_page }}">
+            <button type="submit" class="page-link" formaction="/search/search_raredisease/{{ pagination.last_page }}?key_name={{ request._query_params.key_name|urlencode }}&search_word={{ search_word }}">
               맨 끝
             </button>
           </li>
