@@ -70,24 +70,8 @@ async def list(
     user_dict = dict(request._query_params)
     conditions = {}
 
-    try:
-        search_word = user_dict["search_word"]
-    except:
-        search_word = None    
-    if dise_KCD_code:
-        conditions.update({"dise_KCD_code": {'$regex': dise_KCD_code}})
-    if dise_spc_code:
-        conditions.update({"dise_spc_code": {'$regex': dise_spc_code}})
-    if dise_group:
-        conditions.update({"dise_group": {'$regex': dise_group}})
-    if dise_name_kr:
-        conditions.update({"dise_name_kr": {'$regex': dise_name_kr}})
-    if dise_name_en:
-        conditions.update({"dise_name_en": {'$regex': dise_name_en}})
-    if dise_support:
-        conditions.update({"dise_support": {'$regex': dise_support}})
-    if dise_url:
-        conditions.update({"dise_url": {'$regex': dise_url}})
+    search_word = request.query_params.get('search_word')
+
     if search_word:
         conditions.update({
             "$or": [
@@ -99,17 +83,27 @@ async def list(
                 {"dise_url": {'$regex': search_word}}
             ]
         })
+
     pass
 
     if dise_name_kr:
         conditions.find({ 'dise_name_kr': { '$regex': search_word }})
     pass
+    try :
+        dise_list, pagination = await collection_disease.getsbyconditionswithpagination(
+            conditions, page_number
+        )
 
-    dise_list, pagination = await collection_disease.getsbyconditionswithpagination(
-        conditions, page_number
-    )
+        return templates.TemplateResponse(
+            name="/search/search_raredisease.html",
+            context={'request': request, 'dises': dise_list, 'pagination': pagination,'search_word' : search_word},
+        )
+    except:
+        return templates.TemplateResponse(
+            name="/search/search_raredisease_nondata.html",
+            context={'request': request},
+        )
 
-    return templates.TemplateResponse(
-        name="/search/search_raredisease.html",
-        context={'request': request, 'dises': dise_list, 'pagination': pagination},
-    )
+@router.get("/search_raredisease_nondata", response_class=HTMLResponse) 
+async def institution(request:Request):
+    return templates.TemplateResponse(name="search/search_raredisease_nondata.html", context={'request':request})
