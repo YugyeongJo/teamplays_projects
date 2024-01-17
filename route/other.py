@@ -37,9 +37,9 @@ async def FAQ(request:Request,     page_number: Optional[int] = 1,
     form_data = await request.form()
     dict_form_data = dict(form_data)
     current_time = datetime.now()
-
+    formatted_time = current_time.strftime("%Y-%m-%d %H:%M:%S")
     # 이 시간을 item 객체의 'ques_time' 속성에 저장한다.
-    dict_form_data['ques_time'] = current_time
+    dict_form_data['ques_time'] = formatted_time
     if dict_form_data['ques_title'] =='':
         pass
     else:
