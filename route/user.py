@@ -20,7 +20,7 @@ collection_member = Database(members)
 templates = Jinja2Templates(directory="templates/")
 
 from fastapi.staticfiles import StaticFiles
-app.mount("/data/img", StaticFiles(directory="data/img/"), name="static_img")
+app.mount("/data/img", StaticFiles(directory="data/img"), name="static_img")
 
 # 회원가입
 @router.get("/user_join", response_class=HTMLResponse)
