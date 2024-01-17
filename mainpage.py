@@ -33,6 +33,10 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
+from fastapi.staticfiles import StaticFiles
+# url 경로, 자원 물리 경로, 프로그래밍 측면
+app.mount("/data/img", StaticFiles(directory="data/img/"), name="static_img")
+
 @app.get("/")
 async def root(Request:Request):
     return templates.TemplateResponse("mainpage.html",{'request':Request})
