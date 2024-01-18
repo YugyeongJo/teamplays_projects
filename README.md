@@ -68,7 +68,7 @@
 ||[join.html](./templates/user/user_join.html)|회원가입|ID,email 유효성 포함|
 ||[infosearch.html](./templates/user/user_infosearch.html)|회원정보찾기|email 유효성 포함|
 ||[privacypolicy.html](./templates/user/user_privacypolicy.html)|약관페이지||
-|search|[raredisease.html](./templates/search/search_raredisease.html)|희귀질환 리스트||
+|search|[raredisease.html](./templates/search/search_raredisease.html)|희귀질환 리스트|검색 기능|
 |other|[FAQ.html](./templates/other/other_FAQ.html)|FAQ||
 ||[QnA.html](./templates/other/other_QnA.html)|QnA|게시글 읽기, 쓰기|
 |manag|[manager.html](./templates/manag/manag_manager.html)|관리자 페에지|QnA 댓글 작성, 삭제|
@@ -218,7 +218,31 @@ async def mypage(request:Request ):
 
 ### 김경하
 
-
+이메일로 사용자의 ID와 PW확인
 ```
-여기에 작성해 주세요!
+@router.post("/user_searchcheck_emailcheck", response_class=HTMLResponse) 
+async def mypage(request:Request):
+    form_data = await request.form()
+    dict_form_data = dict(form_data)
+    inputemail = dict_form_data['user_email']
+
+    check_list = await collection_member.get_all()
+    checks_list = [check.dict() for check in check_list]
+
+
+    member_info = {}
+    check_member=False
+    for member in checks_list:
+        if member['user_email'] == inputemail:
+            member_info = {
+                "user_ID": member['user_ID'],  
+                "user_pswd": member['user_pswd']  
+            }
+            check_member = True
+            break
+
+    if check_member:
+        return templates.TemplateResponse("user/user_searchemail_found.html", context={'request': request, "member": member_info})
+    else:
+        return templates.TemplateResponse("user/user_searchemail_notfound.html", context={'request': request})
 ```
