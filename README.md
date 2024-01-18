@@ -83,9 +83,9 @@
 ||[other.py](./route/other.py)|기타 하위 라우트||
 |컨넥터|[connection.py](./database/connection.py)|서버 컨넥터||
 |모델|[member.py](./models/member.py)|user 스키마 모델||
-||[QnA.py](./route/QnA.py)|QnA 스키마 모델||
-||[FAQ.py](./route/FAQ.py)|FAQ 스키마 모델||
-||[disease.py](./route/disease.py)|질병정보 스키마 모델||
+||[QnA.py](./models/QnA.py)|QnA 스키마 모델||
+||[FAQ.py](./models/FAQ.py)|FAQ 스키마 모델||
+||[disease.py](./models/disease.py)|질병정보 스키마 모델||
 
 
 ## 주요 코드
