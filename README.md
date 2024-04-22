@@ -1,24 +1,44 @@
-프로젝트명 :RDS
-프로젝트 기간: 2023.01.08~2023.01.17
+## 희귀 질환을 위한 검색, 병원 연결 시스템
+
+### 주제
+- 프로젝트명 :RDS
+- 프로젝트 기간: 2023.01.08~2023.01.17
 
 ||이름|담당|
 |--|--|--|
-|1|박요한|PM|
-|2|조유경|만능|
-|3|김경하|만능|
-## 주제
-* 희귀 질환을 위한 검색, 병원 연결 시스템
+|1|박요한|PM,프론트,백엔드,기술지원|
+|2|조유경|프론트|
+|3|김경하|백엔드|
 
 ## 개발환경
-> 백엔드
+- 백엔드
 
-* python
+> python (FastAPI)
 
-> 프론트엔드
+- 프론트엔드
 
-* HTML
-* BOOTSTRAP
-* JAVASCRIPT
+> HTML
+> BOOTSTRAP
+> JAVASCRIPT
+
+### 개요
+
+```
+최근 21세기들어 건강에대한 많은 관심이 집중되면서 여러 유전자 분석 / 의료 시스템은 비약적인 발전을 이루었다. 이에 걸맞춰 의료 개인화가 진행되었으며 이전에는 소수였기 때문에 주목받지 못하였던 희귀질환도 중요한 의제에 오르내리게 되었다.
+
+그러나, 아직까지 희귀질환은 소수이며 관련 정보를 찾기가 매우 어려운 것이 현실이다.
+따라서 우리는 이런 희귀질환에 대한 정보를 찾아볼수 있을 뿐더러 여러 병원들의 데이터도 함게 제공하여 확실한 수요층에 대한 공급을 진행하고자 한다.
+```
+
+![메인 페이지](./image/videoframe_3779.png)
+### 동작 (Youtube)
+* [1차 프로젝트](https://youtu.be/3PTxsHhATEk)
+
+
+<details>
+<summary>환경 및 스케쥴링</summary>
+
+
 
 > 설치 모듈
 
@@ -32,8 +52,7 @@
 ~$ pip install pydantic[email]
 ~$ pip install python-dotenv
 ```
-## 동작 (Youtube)
-* [1차 프로젝트](https://youtu.be/3PTxsHhATEk)
+
 
 ## 마일스톤
 
@@ -246,3 +265,5 @@ async def mypage(request:Request):
     else:
         return templates.TemplateResponse("user/user_searchemail_notfound.html", context={'request': request})
 ```
+
+</details>
